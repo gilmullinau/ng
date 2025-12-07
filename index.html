@@ -141,15 +141,15 @@
 
     .month-road {
       position: relative;
-      min-height: 240px;
-      padding: 20px 10px 34px;
+      min-height: 260px;
+      padding: 24px 10px 48px;
       margin: 4px 4px 0;
       isolation: isolate;
     }
 
     .month-road .road-line {
       position: absolute;
-      inset: 10px 12px 16px 12px;
+      inset: 22px 12px 42px 12px;
       z-index: 0;
     }
 
@@ -163,7 +163,7 @@
     .month-road .road-line path {
       fill: none;
       stroke: url(#roadGradient);
-      stroke-width: 12;
+      stroke-width: 10;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -176,49 +176,51 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       z-index: 2;
       text-align: center;
     }
 
-    .month-road .month-tag {
+    .month-road .month-cta {
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+      color: #fdf4dc;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+      width: max-content;
+      max-width: 260px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .month-road .month-cta:hover {
+      transform: translateY(-3px);
+      border-color: rgba(254, 202, 87, 0.65);
+      box-shadow: 0 22px 46px rgba(0, 0, 0, 0.38);
+    }
+
+    .month-road .month-cta:focus-visible {
+      outline: 2px solid rgba(254, 202, 87, 0.85);
+      outline-offset: 3px;
+    }
+
+    .month-road .month-label {
       position: relative;
-      padding: 5px 10px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #2e4f3b;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(36, 80, 58, 0.12);
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
-      z-index: 1;
-      font-size: 12px;
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.7);
+      color: #315c8e;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(46, 76, 109, 0.15);
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-    }
-
-    .month-road .month-tag::before {
-      content: '';
-      position: absolute;
-      inset: -6px -12px;
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.75), transparent 60%);
-      filter: blur(6px);
-      z-index: -1;
-    }
-
-    .month-road .month-tag.is-action {
-      cursor: pointer;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(211, 233, 221, 0.9));
-      border: 1px solid rgba(46, 76, 109, 0.2);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(36, 80, 58, 0.12);
-    }
-
-    .month-road .month-tag.is-action:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24), 0 0 0 1px rgba(36, 80, 58, 0.18);
-    }
-
-    .month-road .month-tag.is-action:focus-visible {
-      outline: 2px solid rgba(254, 202, 87, 0.8);
-      outline-offset: 3px;
+      opacity: 0.9;
+      margin-top: 10px;
     }
 
     .month-road .month-1 { --pos: 8%; --dip: 8px; }
@@ -702,40 +704,41 @@
           </svg>
         </div>
         <div class="month-stop month-1">
-          <span class="month-tag is-action" role="button" tabindex="0" data-modal-target="collage-modal" aria-label="Открыть январский коллаж">Январь</span>
+          <button class="month-cta" data-modal-target="collage-modal" aria-label="Открыть январский коллаж">📸 Как встретили прошлый Новый год</button>
+          <span class="month-label" aria-hidden="true">Январь</span>
         </div>
         <div class="month-stop month-2">
-          <span class="month-tag" aria-hidden="true">Февраль</span>
+          <span class="month-label" aria-hidden="true">Февраль</span>
         </div>
         <div class="month-stop month-3">
-          <span class="month-tag" aria-hidden="true">Март</span>
+          <span class="month-label" aria-hidden="true">Март</span>
         </div>
         <div class="month-stop month-4">
-          <span class="month-tag" aria-hidden="true">Апрель</span>
+          <span class="month-label" aria-hidden="true">Апрель</span>
         </div>
         <div class="month-stop month-5">
-          <span class="month-tag" aria-hidden="true">Май</span>
+          <span class="month-label" aria-hidden="true">Май</span>
         </div>
         <div class="month-stop month-6">
-          <span class="month-tag" aria-hidden="true">Июнь</span>
+          <span class="month-label" aria-hidden="true">Июнь</span>
         </div>
         <div class="month-stop month-7">
-          <span class="month-tag" aria-hidden="true">Июль</span>
+          <span class="month-label" aria-hidden="true">Июль</span>
         </div>
         <div class="month-stop month-8">
-          <span class="month-tag" aria-hidden="true">Август</span>
+          <span class="month-label" aria-hidden="true">Август</span>
         </div>
         <div class="month-stop month-9">
-          <span class="month-tag" aria-hidden="true">Сентябрь</span>
+          <span class="month-label" aria-hidden="true">Сентябрь</span>
         </div>
         <div class="month-stop month-10">
-          <span class="month-tag" aria-hidden="true">Октябрь</span>
+          <span class="month-label" aria-hidden="true">Октябрь</span>
         </div>
         <div class="month-stop month-11">
-          <span class="month-tag" aria-hidden="true">Ноябрь</span>
+          <span class="month-label" aria-hidden="true">Ноябрь</span>
         </div>
         <div class="month-stop month-12">
-          <span class="month-tag" aria-hidden="true">Декабрь</span>
+          <span class="month-label" aria-hidden="true">Декабрь</span>
         </div>
       </div>
     </section>
