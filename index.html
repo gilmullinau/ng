@@ -326,6 +326,13 @@
       border-radius: 12px;
       border: 1px solid var(--card-border);
       box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+      background: linear-gradient(135deg, rgba(165, 232, 255, 0.18), rgba(11, 19, 43, 0.65));
+      transition: opacity 200ms ease;
+    }
+
+    .collage-image.image-failed {
+      object-fit: contain;
+      opacity: 0.85;
     }
 
     @media (max-width: 640px) {
@@ -411,11 +418,11 @@
         <button class="close-btn" data-close-modal>Закрыть</button>
       </div>
       <div class="collage-grid">
-        <img class="collage-image" src="https://drive.google.com/uc?export=view&id=1-jAP14SmxwufZcXpK2dHJ7on82da86UF" alt="Салюты и огни на празднике" loading="lazy">
-        <img class="collage-image" src="https://drive.google.com/uc?export=view&id=1ifN4EvrKVh3j1FTOZF59-we0VJoQYT1a" alt="Селфи с бенгальскими огнями" loading="lazy">
-        <img class="collage-image" src="https://drive.google.com/uc?export=view&id=1FbmsL8Nf02X7gFlKewu_Dk-RZWN7xaIl" alt="Смех за праздничным столом" loading="lazy">
-        <img class="collage-image" src="https://drive.google.com/uc?export=view&id=1T5JA0fnV1iBNLuEvh0-1cVyUKMHKa66M" alt="Тосты и поднятые бокалы" loading="lazy">
-        <img class="collage-image" src="https://drive.google.com/uc?export=view&id=1vmyUQ8owbpbYSJL9uIjdhK6y1gwWPJtU" alt="Совместное фото на фоне гирлянд" loading="lazy">
+        <img class="collage-image" data-drive-id="1-jAP14SmxwufZcXpK2dHJ7on82da86UF" alt="Салюты и огни на празднике" loading="lazy">
+        <img class="collage-image" data-drive-id="1ifN4EvrKVh3j1FTOZF59-we0VJoQYT1a" alt="Селфи с бенгальскими огнями" loading="lazy">
+        <img class="collage-image" data-drive-id="1FbmsL8Nf02X7gFlKewu_Dk-RZWN7xaIl" alt="Смех за праздничным столом" loading="lazy">
+        <img class="collage-image" data-drive-id="1T5JA0fnV1iBNLuEvh0-1cVyUKMHKa66M" alt="Тосты и поднятые бокалы" loading="lazy">
+        <img class="collage-image" data-drive-id="1vmyUQ8owbpbYSJL9uIjdhK6y1gwWPJtU" alt="Совместное фото на фоне гирлянд" loading="lazy">
       </div>
     </div>
   </div>
@@ -466,6 +473,30 @@
       if (event.key === 'Escape' && modal.classList.contains('active')) {
         closeModal(modal);
       }
+    });
+
+    const driveSources = (id) => ([
+      `https://drive.google.com/uc?export=view&id=${id}`,
+      `https://drive.google.com/thumbnail?id=${id}&sz=w2000`,
+      `https://lh3.googleusercontent.com/d/${id}=s2000`
+    ]);
+
+    document.querySelectorAll('[data-drive-id]').forEach((img) => {
+      const sources = driveSources(img.dataset.driveId);
+      let attempt = 0;
+
+      const setNextSource = () => {
+        if (attempt < sources.length) {
+          img.src = sources[attempt];
+          attempt += 1;
+        } else {
+          img.classList.add('image-failed');
+          img.alt = `${img.alt} (не удалось загрузить)`;
+        }
+      };
+
+      img.addEventListener('error', setNextSource);
+      setNextSource();
     });
   </script>
 </body>
