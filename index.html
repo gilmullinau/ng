@@ -303,49 +303,111 @@
       border-color: rgba(254, 202, 87, 0.5);
     }
 
-    .collage-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
+    .diary-page {
       position: relative;
+      background: radial-gradient(circle at 16% 12%, rgba(254, 202, 87, 0.14), transparent 30%),
+                  radial-gradient(circle at 84% 18%, rgba(165, 232, 255, 0.16), transparent 32%),
+                  linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border-radius: 14px;
+      padding: 18px 18px 22px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      overflow: hidden;
     }
 
-    .collage-grid::before,
-    .collage-grid::after {
+    .diary-page::before {
       content: '';
       position: absolute;
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(254, 202, 87, 0.2), transparent 60%);
-      filter: blur(20px);
-      opacity: 0.65;
-      z-index: 0;
+      inset: 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.08);
+      pointer-events: none;
     }
 
-    .collage-grid::before { top: -30px; left: -40px; }
-    .collage-grid::after { bottom: -20px; right: -30px; }
+    .diary-page::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 72px;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(254, 202, 87, 0.5), transparent 12%, transparent 88%, rgba(165, 232, 255, 0.4));
+      opacity: 0.7;
+      pointer-events: none;
+    }
 
-    .collage-image {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28), 0 0 0 6px rgba(11, 19, 43, 0.42);
-      background: linear-gradient(135deg, rgba(165, 232, 255, 0.18), rgba(11, 19, 43, 0.65));
-      transition: opacity 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+    .diary-heading {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: 18px;
+      margin: 0 0 12px;
+      letter-spacing: 0.01em;
+    }
+
+    .diary-entries {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
       position: relative;
       z-index: 1;
     }
 
-    .collage-image.image-failed {
-      object-fit: contain;
-      opacity: 0.85;
+    .diary-entry {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px 16px;
+      align-items: start;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 12px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
     }
 
-    .collage-image:hover {
-      transform: translateY(-4px);
+    .entry-pin {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #ffe7a3, #feca57 60%, #d58b1a 100%);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+      display: grid;
+      place-items: center;
+      color: #5a2a00;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .entry-text {
+      margin: 0;
+      line-height: 1.65;
+      color: #eaf3ff;
+      font-size: 15px;
+    }
+
+    .entry-text strong {
+      color: #ffe3a1;
+    }
+
+    .diary-photo {
+      grid-column: 1 / -1;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28), 0 0 0 6px rgba(11, 19, 43, 0.42);
+      background: linear-gradient(135deg, rgba(165, 232, 255, 0.18), rgba(11, 19, 43, 0.65));
+      height: 200px;
+      object-fit: cover;
+      cursor: zoom-in;
+      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+    }
+
+    .diary-photo:hover {
+      transform: translateY(-3px);
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32), 0 0 0 6px rgba(11, 19, 43, 0.5);
+    }
+
+    .diary-photo.image-failed {
+      object-fit: contain;
+      opacity: 0.85;
     }
 
     .photo-viewer {
@@ -473,12 +535,39 @@
         <h3 class="modal-title" id="collage-title">Коллаж: прошлый Новый год</h3>
         <button class="close-btn" data-close-modal>Закрыть</button>
       </div>
-      <div class="collage-grid">
-        <img class="collage-image" data-drive-id="1-jAP14SmxwufZcXpK2dHJ7on82da86UF" alt="Салюты и огни на празднике" loading="lazy">
-        <img class="collage-image" data-drive-id="1ifN4EvrKVh3j1FTOZF59-we0VJoQYT1a" alt="Селфи с бенгальскими огнями" loading="lazy">
-        <img class="collage-image" data-drive-id="1FbmsL8Nf02X7gFlKewu_Dk-RZWN7xaIl" alt="Смех за праздничным столом" loading="lazy">
-        <img class="collage-image" data-drive-id="1T5JA0fnV1iBNLuEvh0-1cVyUKMHKa66M" alt="Тосты и поднятые бокалы" loading="lazy">
-        <img class="collage-image" data-drive-id="1vmyUQ8owbpbYSJL9uIjdhK6y1gwWPJtU" alt="Совместное фото на фоне гирлянд" loading="lazy">
+      <div class="diary-page" role="document">
+        <p class="diary-heading">Страница дневника о том, как мы встречали прошлый Новый год</p>
+        <div class="diary-entries">
+          <div class="diary-entry">
+            <span class="entry-pin">1</span>
+            <p class="entry-text">Мы с <strong>кошкой Ханей</strong> приехали в гости в Ижевск, и хозяйские кошки приняли её по-дружески — целый кошачий клуб!</p>
+            <img class="diary-photo" data-drive-id="1ifN4EvrKVh3j1FTOZF59-we0VJoQYT1a" alt="Кошка Ханя знакомится с новой кошачьей подругой" data-caption="Ханя и новая подруга принюхиваются и уже не против делить плед." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">2</span>
+            <p class="entry-text">Мы много <strong>гуляли по зимнему Ижевску</strong>, и маленький путешественник в пухлом комбинезоне уверенно шагал по сугробам.</p>
+            <img class="diary-photo" data-drive-id="1-jAP14SmxwufZcXpK2dHJ7on82da86UF" alt="Мальчик в зимнем комбинезоне идёт по снегу" data-caption="Маленький исследователь шагает по свежему снегу, оставляя за собой крошечные следы." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">3</span>
+            <p class="entry-text">На прогулке мы нашли <strong>огромные сосульки</strong> — так и вышло забавное фото всех троих с ледяными трофеями.</p>
+            <img class="diary-photo" data-drive-id="1FbmsL8Nf02X7gFlKewu_Dk-RZWN7xaIl" alt="Три члена семьи держат большие сосульки" data-caption="Трое с сосульками: хрупкий лёд в руках и смех в голосе." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">4</span>
+            <p class="entry-text">Вы регулярно <strong>катались на лыжах</strong>: сначала папа уверенно прокладывал дорожку по снежной тропе.</p>
+            <img class="diary-photo" data-drive-id="1T5JA0fnV1iBNLuEvh0-1cVyUKMHKa66M" alt="Папа едет на лыжах по зимней тропе" data-caption="Папа на лыжне, вокруг — только сосны и мягкий снег." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">5</span>
+            <p class="entry-text">А затем эстафету подхватывала мама, и лыжи катили нас дальше по свежему, искрящемуся снегу.</p>
+            <img class="diary-photo" data-drive-id="1vmyUQ8owbpbYSJL9uIjdhK6y1gwWPJtU" alt="Мама на лыжах улыбается в объектив" data-caption="Мама улыбается прямо с лыжни — кадр, который хочется пересматривать." loading="lazy">
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -570,10 +659,11 @@
       setNextSource();
     });
 
-    function openPhotoViewer(src, alt) {
+    function openPhotoViewer(src, alt, captionText) {
+      const caption = captionText || alt;
       photoImg.src = src;
       photoImg.alt = alt;
-      photoCaption.textContent = alt;
+      photoCaption.textContent = caption;
       photoViewer.classList.add('active');
       photoViewer.setAttribute('aria-hidden', 'false');
     }
@@ -584,10 +674,10 @@
       photoImg.src = '';
     }
 
-    document.querySelectorAll('.collage-image').forEach((img) => {
+    document.querySelectorAll('.diary-photo').forEach((img) => {
       img.addEventListener('click', () => {
         const sources = driveSources(img.dataset.driveId);
-        openPhotoViewer(sources[0], img.alt);
+        openPhotoViewer(sources[0], img.alt, img.dataset.caption);
       });
     });
 
