@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Новый год: Мамочка и Папочка</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep-blue: #0b132b;
+      --frost: #a5e8ff;
+      --snow: #f7fbff;
+      --accent: #feca57;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      color: var(--snow);
+      background: radial-gradient(120% 120% at 10% 10%, rgba(165, 232, 255, 0.22), transparent 40%),
+                  radial-gradient(120% 120% at 90% 20%, rgba(254, 202, 87, 0.18), transparent 35%),
+                  linear-gradient(135deg, #0b132b, #1c2541 60%, #0b132b);
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    .snow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10vh;
+      color: var(--snow);
+      font-size: 1rem;
+      opacity: 0.9;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0.8;
+      }
+      70% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    header {
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(8px);
+    }
+
+    .title {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      margin: 0 0 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #e8f4ff;
+      max-width: 760px;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      min-height: 140px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(254, 202, 87, 0.4);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(165, 232, 255, 0.14), transparent 35%);
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    .card-title {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-subtitle {
+      margin: 0;
+      color: #d9e9ff;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(254, 202, 87, 0.12);
+      border: 1px solid rgba(254, 202, 87, 0.4);
+      color: #ffe3a1;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      text-align: center;
+      color: #d9e9ff;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 36px 18px 48px;
+      }
+
+      header {
+        padding: 24px;
+      }
+
+      .card {
+        min-height: 130px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="snow">
+    <span class="snowflake" style="left: 10%; animation-duration: 12s; animation-delay: 0s;">❄</span>
+    <span class="snowflake" style="left: 25%; animation-duration: 14s; animation-delay: 1s;">✵</span>
+    <span class="snowflake" style="left: 40%; animation-duration: 11s; animation-delay: 2s;">❅</span>
+    <span class="snowflake" style="left: 55%; animation-duration: 13s; animation-delay: 0.5s;">❆</span>
+    <span class="snowflake" style="left: 70%; animation-duration: 15s; animation-delay: 1.5s;">✼</span>
+    <span class="snowflake" style="left: 85%; animation-duration: 12.5s; animation-delay: 0.8s;">❄</span>
+    <span class="snowflake" style="left: 5%; animation-duration: 17s; animation-delay: 2.4s;">✵</span>
+    <span class="snowflake" style="left: 92%; animation-duration: 16s; animation-delay: 1.2s;">❆</span>
+    <span class="snowflake" style="left: 32%; animation-duration: 13.5s; animation-delay: 0.3s;">❅</span>
+    <span class="snowflake" style="left: 62%; animation-duration: 18s; animation-delay: 2.1s;">✼</span>
+  </div>
+
+  <main>
+    <header>
+      <p class="pill">Добро пожаловать</p>
+      <h1 class="title">С Новым годом, Мамочка и Папочка!</h1>
+      <p class="subtitle">Этот дашборд мы будем наполнять воспоминаниями, фотографиями, видео и теплыми словами. Пока что это уютный новогодний холл, откуда можно будет переходить в разные разделы.</p>
+    </header>
+
+    <section class="nav-grid">
+      <a class="card" href="#photos">
+        <h2 class="card-title">📸 Фотографии</h2>
+        <p class="card-subtitle">Подборка лучших снимков этого года и прошлых праздников.</p>
+      </a>
+      <a class="card" href="#videos">
+        <h2 class="card-title">🎥 Видео</h2>
+        <p class="card-subtitle">Короткие ролики, поздравления и трогательные моменты.</p>
+      </a>
+      <a class="card" href="#letters">
+        <h2 class="card-title">💌 Письма и пожелания</h2>
+        <p class="card-subtitle">Слова любви и благодарности, написанные специально для вас.</p>
+      </a>
+      <a class="card" href="#plans">
+        <h2 class="card-title">✨ Планы и сюрпризы</h2>
+        <p class="card-subtitle">Идеи для совместных традиций, впечатлений и будущих путешествий.</p>
+      </a>
+    </section>
+
+    <footer>
+      Скоро здесь появятся новые разделы и праздничные истории. Спасибо, что вы есть!
+    </footer>
+  </main>
+</body>
+</html>
