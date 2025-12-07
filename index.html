@@ -33,6 +33,10 @@
       overflow-x: hidden;
     }
 
+    body.lock-scroll {
+      overflow: hidden;
+    }
+
     .snow {
       position: fixed;
       inset: 0;
@@ -259,9 +263,11 @@
       padding: 22px;
       max-width: 980px;
       width: min(100%, 980px);
+      max-height: 90vh;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.46);
       position: relative;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     .modal-content::before {
@@ -394,10 +400,9 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28), 0 0 0 6px rgba(11, 19, 43, 0.42);
       background: linear-gradient(135deg, rgba(165, 232, 255, 0.18), rgba(11, 19, 43, 0.65));
-      aspect-ratio: 3 / 2;
       height: auto;
-      max-height: 320px;
-      object-fit: cover;
+      max-height: 380px;
+      object-fit: contain;
       cursor: zoom-in;
       transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
     }
@@ -647,15 +652,30 @@
     const photoIndicator = document.getElementById('photo-indicator');
     const diaryPhotos = Array.from(document.querySelectorAll('.diary-photo'));
     let currentPhotoIndex = 0;
+    let scrollLocks = 0;
+
+    function lockScroll() {
+      scrollLocks += 1;
+      document.body.classList.add('lock-scroll');
+    }
+
+    function unlockScroll() {
+      scrollLocks = Math.max(0, scrollLocks - 1);
+      if (scrollLocks === 0) {
+        document.body.classList.remove('lock-scroll');
+      }
+    }
 
     function openModal(target) {
       target.classList.add('active');
       target.setAttribute('aria-hidden', 'false');
+      lockScroll();
     }
 
     function closeModal(target) {
       target.classList.remove('active');
       target.setAttribute('aria-hidden', 'true');
+      unlockScroll();
     }
 
     memoryCards.forEach(card => {
@@ -738,6 +758,7 @@
       photoIndicator.textContent = `${currentPhotoIndex + 1} / ${diaryPhotos.length}`;
       photoViewer.classList.add('active');
       photoViewer.setAttribute('aria-hidden', 'false');
+      lockScroll();
     }
 
     function closePhotoViewer() {
@@ -745,6 +766,7 @@
       photoViewer.setAttribute('aria-hidden', 'true');
       photoImg.src = '';
       photoIndicator.textContent = '';
+      unlockScroll();
     }
 
     diaryPhotos.forEach((img, index) => {
