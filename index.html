@@ -394,7 +394,9 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28), 0 0 0 6px rgba(11, 19, 43, 0.42);
       background: linear-gradient(135deg, rgba(165, 232, 255, 0.18), rgba(11, 19, 43, 0.65));
-      height: 200px;
+      aspect-ratio: 3 / 2;
+      height: auto;
+      max-height: 320px;
       object-fit: cover;
       cursor: zoom-in;
       transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
@@ -435,6 +437,7 @@
       max-width: 90vw;
       max-height: 88vh;
       box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
     }
 
     .photo-frame img {
@@ -445,6 +448,8 @@
       border: 1px solid rgba(255, 255, 255, 0.25);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
       object-fit: contain;
+      transition: transform 220ms ease;
+      cursor: zoom-in;
     }
 
     .photo-caption {
@@ -452,6 +457,53 @@
       color: #e8f4ff;
       font-size: 14px;
       line-height: 1.5;
+    }
+
+    .photo-nav {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+      padding: 0 6px;
+    }
+
+    .nav-btn {
+      pointer-events: auto;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(12, 20, 43, 0.82);
+      color: #fff;
+      border-radius: 999px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+      transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+    }
+
+    .nav-btn:hover { transform: translateY(-2px) scale(1.02); border-color: rgba(254, 202, 87, 0.7); background: rgba(20, 34, 70, 0.92); }
+    .nav-btn:focus-visible { outline: 2px solid rgba(254, 202, 87, 0.7); outline-offset: 2px; }
+
+    .photo-indicator {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #e8f4ff;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .photo-frame img.zoomed {
+      transform: scale(1.22);
+      cursor: zoom-out;
     }
 
     @media (max-width: 640px) {
@@ -575,7 +627,12 @@
   <div class="photo-viewer" id="photo-viewer" aria-hidden="true" role="dialog" aria-label="Просмотр фото">
     <div class="photo-frame">
       <button class="close-btn" data-photo-close style="position:absolute; top:10px; right:10px;">Закрыть</button>
+      <div class="photo-nav" aria-hidden="true">
+        <button class="nav-btn" type="button" data-photo-prev aria-label="Предыдущее фото">‹</button>
+        <button class="nav-btn" type="button" data-photo-next aria-label="Следующее фото">›</button>
+      </div>
       <img src="" alt="" id="photo-viewer-img">
+      <div class="photo-indicator" id="photo-indicator"></div>
       <p class="photo-caption" id="photo-viewer-caption"></p>
     </div>
   </div>
@@ -587,6 +644,9 @@
     const photoViewer = document.getElementById('photo-viewer');
     const photoImg = document.getElementById('photo-viewer-img');
     const photoCaption = document.getElementById('photo-viewer-caption');
+    const photoIndicator = document.getElementById('photo-indicator');
+    const diaryPhotos = Array.from(document.querySelectorAll('.diary-photo'));
+    let currentPhotoIndex = 0;
 
     function openModal(target) {
       target.classList.add('active');
@@ -656,14 +716,26 @@
       };
 
       img.addEventListener('error', setNextSource);
+      img.addEventListener('load', () => {
+        img.dataset.resolvedSrc = img.src;
+      });
+
       setNextSource();
     });
 
-    function openPhotoViewer(src, alt, captionText) {
-      const caption = captionText || alt;
-      photoImg.src = src;
-      photoImg.alt = alt;
+    function showPhoto(index) {
+      if (!diaryPhotos.length) return;
+      currentPhotoIndex = (index + diaryPhotos.length) % diaryPhotos.length;
+      const img = diaryPhotos[currentPhotoIndex];
+      const sources = driveSources(img.dataset.driveId);
+      const resolvedSrc = img.dataset.resolvedSrc || sources[0];
+      const caption = img.dataset.caption || img.alt;
+
+      photoImg.classList.remove('zoomed');
+      photoImg.src = resolvedSrc;
+      photoImg.alt = img.alt;
       photoCaption.textContent = caption;
+      photoIndicator.textContent = `${currentPhotoIndex + 1} / ${diaryPhotos.length}`;
       photoViewer.classList.add('active');
       photoViewer.setAttribute('aria-hidden', 'false');
     }
@@ -672,12 +744,12 @@
       photoViewer.classList.remove('active');
       photoViewer.setAttribute('aria-hidden', 'true');
       photoImg.src = '';
+      photoIndicator.textContent = '';
     }
 
-    document.querySelectorAll('.diary-photo').forEach((img) => {
+    diaryPhotos.forEach((img, index) => {
       img.addEventListener('click', () => {
-        const sources = driveSources(img.dataset.driveId);
-        openPhotoViewer(sources[0], img.alt, img.dataset.caption);
+        showPhoto(index);
       });
     });
 
@@ -689,6 +761,28 @@
 
     document.querySelectorAll('[data-photo-close]').forEach((btn) => {
       btn.addEventListener('click', closePhotoViewer);
+    });
+
+    document.querySelectorAll('[data-photo-prev]').forEach((btn) => btn.addEventListener('click', () => showPhoto(currentPhotoIndex - 1)));
+    document.querySelectorAll('[data-photo-next]').forEach((btn) => btn.addEventListener('click', () => showPhoto(currentPhotoIndex + 1)));
+
+    photoImg.addEventListener('click', () => {
+      photoImg.classList.toggle('zoomed');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (photoViewer.classList.contains('active')) {
+        if (event.key === 'ArrowLeft') {
+          showPhoto(currentPhotoIndex - 1);
+        }
+        if (event.key === 'ArrowRight') {
+          showPhoto(currentPhotoIndex + 1);
+        }
+        if (event.key === ' ') {
+          event.preventDefault();
+          photoImg.classList.toggle('zoomed');
+        }
+      }
     });
   </script>
 </body>
