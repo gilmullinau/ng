@@ -135,40 +135,101 @@
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
       position: relative;
-      padding: 18px 14px 14px;
+      padding: 18px 14px 120px;
       isolation: isolate;
     }
 
-    .nav-grid::before {
-      content: '';
-      position: absolute;
-      left: 10px;
-      right: 10px;
-      top: 34px;
-      height: 64px;
-      background: linear-gradient(90deg, rgba(197, 230, 206, 0.85), rgba(214, 239, 220, 0.92));
-      border-radius: 999px;
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16), inset 0 0 0 1px rgba(52, 92, 70, 0.14);
-      filter: blur(0.15px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .nav-grid::after {
-      content: 'Январь • Февраль • Март • Апрель • Май • Июнь • Июль • Август • Сентябрь • Октябрь • Ноябрь • Декабрь';
+    .month-road {
       position: absolute;
       left: 22px;
       right: 22px;
-      top: 55px;
-      text-align: center;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(36, 80, 58, 0.65);
+      bottom: 16px;
+      height: 90px;
       pointer-events: none;
-      white-space: nowrap;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
-      z-index: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .month-road .road-line {
+      position: absolute;
+      inset: 0;
+      top: 28px;
+      height: 12px;
+      background: linear-gradient(90deg, rgba(198, 231, 207, 0.9), rgba(214, 240, 218, 0.95));
+      border-radius: 999px;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18), inset 0 0 0 1px rgba(60, 100, 74, 0.16);
+      filter: saturate(1.02);
+    }
+
+    .month-road .month-tag {
+      position: relative;
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.88);
+      color: #2e4f3b;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(36, 80, 58, 0.12);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+      transform: translateY(var(--offset, 0));
+      z-index: 1;
+    }
+
+    .month-road .month-tag::before {
+      content: '';
+      position: absolute;
+      inset: -6px -12px;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.75), transparent 60%);
+      filter: blur(6px);
+      z-index: -1;
+    }
+
+    .month-road .month-1,
+    .month-road .month-2 {
+      --offset: -6px;
+    }
+
+    .month-road .month-3 {
+      --offset: 12px;
+    }
+
+    .month-road .month-4 {
+      --offset: 24px;
+    }
+
+    .month-road .month-5 {
+      --offset: 16px;
+    }
+
+    .month-road .month-6 {
+      --offset: 32px;
+    }
+
+    .month-road .month-7 {
+      --offset: 22px;
+    }
+
+    .month-road .month-8 {
+      --offset: 36px;
+    }
+
+    .month-road .month-9 {
+      --offset: 26px;
+    }
+
+    .month-road .month-10 {
+      --offset: 40px;
+    }
+
+    .month-road .month-11 {
+      --offset: 30px;
+    }
+
+    .month-road .month-12 {
+      --offset: 44px;
     }
 
     .card {
@@ -643,6 +704,21 @@
         <h2 class="card-title">✨ Планы и сюрпризы</h2>
         <p class="card-subtitle">Идеи для совместных традиций, впечатлений и будущих путешествий.</p>
       </a>
+      <div class="month-road" aria-hidden="true">
+        <div class="road-line"></div>
+        <span class="month-tag month-1">Январь</span>
+        <span class="month-tag month-2">Февраль</span>
+        <span class="month-tag month-3">Март</span>
+        <span class="month-tag month-4">Апрель</span>
+        <span class="month-tag month-5">Май</span>
+        <span class="month-tag month-6">Июнь</span>
+        <span class="month-tag month-7">Июль</span>
+        <span class="month-tag month-8">Август</span>
+        <span class="month-tag month-9">Сентябрь</span>
+        <span class="month-tag month-10">Октябрь</span>
+        <span class="month-tag month-11">Ноябрь</span>
+        <span class="month-tag month-12">Декабрь</span>
+      </div>
     </section>
 
     <footer>
