@@ -131,39 +131,95 @@
     }
 
     .nav-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      padding: 18px 14px 28px;
+      isolation: isolate;
+    }
+
+    .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
       position: relative;
-      padding: 18px 14px 120px;
-      isolation: isolate;
+      z-index: 2;
     }
 
     .month-road {
-      position: absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 16px;
-      height: 90px;
-      pointer-events: none;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 6px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      position: relative;
+      min-height: 210px;
+      padding: 16px 10px 30px;
+      margin: 4px 4px 0;
+      isolation: isolate;
     }
 
     .month-road .road-line {
       position: absolute;
-      inset: 0;
-      top: 28px;
-      height: 12px;
-      background: linear-gradient(90deg, rgba(198, 231, 207, 0.9), rgba(214, 240, 218, 0.95));
-      border-radius: 999px;
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18), inset 0 0 0 1px rgba(60, 100, 74, 0.16);
-      filter: saturate(1.02);
+      inset: 10px 12px 16px 12px;
+      z-index: 0;
+    }
+
+    .month-road .road-line svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
+    }
+
+    .month-road .road-line path {
+      fill: none;
+      stroke: url(#roadGradient);
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .month-road .month-stop {
+      position: absolute;
+      left: var(--pos);
+      top: var(--dip, 0px);
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .month-road .month-btn {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      color: #fdf7e8;
+      padding: 10px 14px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+      min-width: 92px;
+    }
+
+    .month-road .month-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      border-color: rgba(254, 202, 87, 0.6);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.36);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.1));
+    }
+
+    .month-road .month-btn:focus-visible {
+      outline: 2px solid rgba(254, 202, 87, 0.8);
+      outline-offset: 3px;
+    }
+
+    .month-road .month-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+      border-color: rgba(255, 255, 255, 0.14);
+      box-shadow: none;
     }
 
     .month-road .month-tag {
@@ -174,8 +230,10 @@
       border-radius: 12px;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(36, 80, 58, 0.12);
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
-      transform: translateY(var(--offset, 0));
       z-index: 1;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     .month-road .month-tag::before {
@@ -187,50 +245,18 @@
       z-index: -1;
     }
 
-    .month-road .month-1,
-    .month-road .month-2 {
-      --offset: -6px;
-    }
-
-    .month-road .month-3 {
-      --offset: 12px;
-    }
-
-    .month-road .month-4 {
-      --offset: 24px;
-    }
-
-    .month-road .month-5 {
-      --offset: 16px;
-    }
-
-    .month-road .month-6 {
-      --offset: 32px;
-    }
-
-    .month-road .month-7 {
-      --offset: 22px;
-    }
-
-    .month-road .month-8 {
-      --offset: 36px;
-    }
-
-    .month-road .month-9 {
-      --offset: 26px;
-    }
-
-    .month-road .month-10 {
-      --offset: 40px;
-    }
-
-    .month-road .month-11 {
-      --offset: 30px;
-    }
-
-    .month-road .month-12 {
-      --offset: 44px;
-    }
+    .month-road .month-1 { --pos: 6%; --dip: 8px; }
+    .month-road .month-2 { --pos: 15%; --dip: 8px; }
+    .month-road .month-3 { --pos: 26%; --dip: 28px; }
+    .month-road .month-4 { --pos: 38%; --dip: 46px; }
+    .month-road .month-5 { --pos: 50%; --dip: 30px; }
+    .month-road .month-6 { --pos: 61%; --dip: 48px; }
+    .month-road .month-7 { --pos: 72%; --dip: 64px; }
+    .month-road .month-8 { --pos: 82%; --dip: 84px; }
+    .month-road .month-9 { --pos: 70%; --dip: 110px; }
+    .month-road .month-10 { --pos: 56%; --dip: 132px; }
+    .month-road .month-11 { --pos: 42%; --dip: 118px; }
+    .month-road .month-12 { --pos: 28%; --dip: 102px; }
 
     .card {
       position: relative;
@@ -687,37 +713,85 @@
     </header>
 
     <section class="nav-grid">
-      <button class="card card-button" type="button" data-modal-target="collage-modal">
-        <div class="pill" aria-hidden="true">Коллаж</div>
-        <h2 class="card-title">📸 Как встретили прошлый Новый год</h2>
-        <p class="card-subtitle">Одна кнопка — и весь прошлогодний праздник открывается перед нами.</p>
-      </button>
-      <a class="card" href="#videos">
-        <h2 class="card-title">🎥 Видео</h2>
-        <p class="card-subtitle">Короткие ролики, поздравления и трогательные моменты.</p>
-      </a>
-      <a class="card" href="#letters">
-        <h2 class="card-title">💌 Письма и пожелания</h2>
-        <p class="card-subtitle">Слова любви и благодарности, написанные специально для вас.</p>
-      </a>
-      <a class="card" href="#plans">
-        <h2 class="card-title">✨ Планы и сюрпризы</h2>
-        <p class="card-subtitle">Идеи для совместных традиций, впечатлений и будущих путешествий.</p>
-      </a>
-      <div class="month-road" aria-hidden="true">
-        <div class="road-line"></div>
-        <span class="month-tag month-1">Январь</span>
-        <span class="month-tag month-2">Февраль</span>
-        <span class="month-tag month-3">Март</span>
-        <span class="month-tag month-4">Апрель</span>
-        <span class="month-tag month-5">Май</span>
-        <span class="month-tag month-6">Июнь</span>
-        <span class="month-tag month-7">Июль</span>
-        <span class="month-tag month-8">Август</span>
-        <span class="month-tag month-9">Сентябрь</span>
-        <span class="month-tag month-10">Октябрь</span>
-        <span class="month-tag month-11">Ноябрь</span>
-        <span class="month-tag month-12">Декабрь</span>
+      <div class="card-grid">
+        <button class="card card-button" type="button" data-modal-target="collage-modal">
+          <div class="pill" aria-hidden="true">Коллаж</div>
+          <h2 class="card-title">📸 Как встретили прошлый Новый год</h2>
+          <p class="card-subtitle">Одна кнопка — и весь прошлогодний праздник открывается перед нами.</p>
+        </button>
+        <a class="card" href="#videos">
+          <h2 class="card-title">🎥 Видео</h2>
+          <p class="card-subtitle">Короткие ролики, поздравления и трогательные моменты.</p>
+        </a>
+        <a class="card" href="#letters">
+          <h2 class="card-title">💌 Письма и пожелания</h2>
+          <p class="card-subtitle">Слова любви и благодарности, написанные специально для вас.</p>
+        </a>
+        <a class="card" href="#plans">
+          <h2 class="card-title">✨ Планы и сюрпризы</h2>
+          <p class="card-subtitle">Идеи для совместных традиций, впечатлений и будущих путешествий.</p>
+        </a>
+      </div>
+      <div class="month-road" aria-label="Лента месяцев">
+        <div class="road-line" aria-hidden="true">
+          <svg viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="roadGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#c6e7cf" stop-opacity="0.95" />
+                <stop offset="100%" stop-color="#d6f0da" stop-opacity="0.92" />
+              </linearGradient>
+            </defs>
+            <path d="M20 40 C150 40 260 42 360 56 S560 96 670 68 S860 48 980 82 S1110 140 1180 136" />
+          </svg>
+        </div>
+        <div class="month-stop month-1">
+          <button class="month-btn" type="button" data-modal-target="collage-modal">Январь</button>
+          <span class="month-tag" aria-hidden="true">Январь</span>
+        </div>
+        <div class="month-stop month-2">
+          <button class="month-btn" type="button" disabled title="Скоро">Февраль</button>
+          <span class="month-tag" aria-hidden="true">Февраль</span>
+        </div>
+        <div class="month-stop month-3">
+          <button class="month-btn" type="button" disabled title="Скоро">Март</button>
+          <span class="month-tag" aria-hidden="true">Март</span>
+        </div>
+        <div class="month-stop month-4">
+          <button class="month-btn" type="button" disabled title="Скоро">Апрель</button>
+          <span class="month-tag" aria-hidden="true">Апрель</span>
+        </div>
+        <div class="month-stop month-5">
+          <button class="month-btn" type="button" disabled title="Скоро">Май</button>
+          <span class="month-tag" aria-hidden="true">Май</span>
+        </div>
+        <div class="month-stop month-6">
+          <button class="month-btn" type="button" disabled title="Скоро">Июнь</button>
+          <span class="month-tag" aria-hidden="true">Июнь</span>
+        </div>
+        <div class="month-stop month-7">
+          <button class="month-btn" type="button" disabled title="Скоро">Июль</button>
+          <span class="month-tag" aria-hidden="true">Июль</span>
+        </div>
+        <div class="month-stop month-8">
+          <button class="month-btn" type="button" disabled title="Скоро">Август</button>
+          <span class="month-tag" aria-hidden="true">Август</span>
+        </div>
+        <div class="month-stop month-9">
+          <button class="month-btn" type="button" disabled title="Скоро">Сентябрь</button>
+          <span class="month-tag" aria-hidden="true">Сентябрь</span>
+        </div>
+        <div class="month-stop month-10">
+          <button class="month-btn" type="button" disabled title="Скоро">Октябрь</button>
+          <span class="month-tag" aria-hidden="true">Октябрь</span>
+        </div>
+        <div class="month-stop month-11">
+          <button class="month-btn" type="button" disabled title="Скоро">Ноябрь</button>
+          <span class="month-tag" aria-hidden="true">Ноябрь</span>
+        </div>
+        <div class="month-stop month-12">
+          <button class="month-btn" type="button" disabled title="Скоро">Декабрь</button>
+          <span class="month-tag" aria-hidden="true">Декабрь</span>
+        </div>
       </div>
     </section>
 
