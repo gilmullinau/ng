@@ -133,24 +133,16 @@
     .nav-grid {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 10px;
       position: relative;
       padding: 18px 14px 28px;
       isolation: isolate;
     }
 
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-      position: relative;
-      z-index: 2;
-    }
-
     .month-road {
       position: relative;
-      min-height: 210px;
-      padding: 16px 10px 30px;
+      min-height: 240px;
+      padding: 20px 10px 34px;
       margin: 4px 4px 0;
       isolation: isolate;
     }
@@ -184,7 +176,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
       z-index: 2;
       text-align: center;
     }
@@ -193,15 +185,15 @@
       background: linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
       border: 1px solid rgba(255, 255, 255, 0.26);
       color: #fdf7e8;
-      padding: 10px 14px;
+      padding: 11px 16px;
       border-radius: 14px;
       cursor: pointer;
       font-weight: 700;
       letter-spacing: 0.01em;
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
       transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
-      min-width: 112px;
-      max-width: 180px;
+      min-width: 126px;
+      max-width: 210px;
       text-align: center;
       line-height: 1.3;
       white-space: normal;
@@ -249,18 +241,18 @@
       z-index: -1;
     }
 
-    .month-road .month-1 { --pos: 6%; --dip: 8px; }
-    .month-road .month-2 { --pos: 15%; --dip: 8px; }
-    .month-road .month-3 { --pos: 26%; --dip: 28px; }
-    .month-road .month-4 { --pos: 38%; --dip: 46px; }
-    .month-road .month-5 { --pos: 50%; --dip: 30px; }
-    .month-road .month-6 { --pos: 61%; --dip: 48px; }
-    .month-road .month-7 { --pos: 72%; --dip: 64px; }
-    .month-road .month-8 { --pos: 82%; --dip: 84px; }
-    .month-road .month-9 { --pos: 70%; --dip: 110px; }
-    .month-road .month-10 { --pos: 56%; --dip: 132px; }
-    .month-road .month-11 { --pos: 42%; --dip: 118px; }
-    .month-road .month-12 { --pos: 28%; --dip: 102px; }
+    .month-road .month-1 { --pos: 8%; --dip: 8px; }
+    .month-road .month-2 { --pos: 22%; --dip: 8px; }
+    .month-road .month-3 { --pos: 36%; --dip: 28px; }
+    .month-road .month-4 { --pos: 50%; --dip: 54px; }
+    .month-road .month-5 { --pos: 64%; --dip: 32px; }
+    .month-road .month-6 { --pos: 78%; --dip: 60px; }
+    .month-road .month-7 { --pos: 92%; --dip: 86px; }
+    .month-road .month-8 { --pos: 78%; --dip: 118px; }
+    .month-road .month-9 { --pos: 62%; --dip: 148px; }
+    .month-road .month-10 { --pos: 46%; --dip: 172px; }
+    .month-road .month-11 { --pos: 30%; --dip: 150px; }
+    .month-road .month-12 { --pos: 16%; --dip: 132px; }
 
     .card {
       position: relative;
@@ -717,25 +709,6 @@
     </header>
 
     <section class="nav-grid">
-      <div class="card-grid">
-        <button class="card card-button" type="button" data-modal-target="collage-modal">
-          <div class="pill" aria-hidden="true">Коллаж</div>
-          <h2 class="card-title">📸 Как встретили прошлый Новый год</h2>
-          <p class="card-subtitle">Одна кнопка — и весь прошлогодний праздник открывается перед нами.</p>
-        </button>
-        <a class="card" href="#videos">
-          <h2 class="card-title">🎥 Видео</h2>
-          <p class="card-subtitle">Короткие ролики, поздравления и трогательные моменты.</p>
-        </a>
-        <a class="card" href="#letters">
-          <h2 class="card-title">💌 Письма и пожелания</h2>
-          <p class="card-subtitle">Слова любви и благодарности, написанные специально для вас.</p>
-        </a>
-        <a class="card" href="#plans">
-          <h2 class="card-title">✨ Планы и сюрпризы</h2>
-          <p class="card-subtitle">Идеи для совместных традиций, впечатлений и будущих путешествий.</p>
-        </a>
-      </div>
       <div class="month-road" aria-label="Лента месяцев">
         <div class="road-line" aria-hidden="true">
           <svg viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
