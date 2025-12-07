@@ -77,6 +77,31 @@
       gap: 32px;
     }
 
+    section {
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(8px);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 8px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .section-subtitle {
+      margin: 0 0 20px;
+      color: #e8f4ff;
+      line-height: 1.6;
+    }
+
     header {
       background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
       border: 1px solid var(--card-border);
@@ -178,6 +203,131 @@
       margin-top: 12px;
     }
 
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .memory-card {
+      position: relative;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      background: var(--card);
+      cursor: pointer;
+      transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+      overflow: hidden;
+    }
+
+    .memory-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(254, 202, 87, 0.35);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3);
+    }
+
+    .memory-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(165, 232, 255, 0.14), transparent 40%);
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
+
+    .memory-card:hover::before {
+      opacity: 1;
+    }
+
+    .memory-title {
+      margin: 0 0 6px;
+      font-weight: 700;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .memory-text {
+      margin: 0;
+      color: #d9e9ff;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: linear-gradient(145deg, rgba(12, 20, 43, 0.92), rgba(15, 28, 61, 0.9));
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 20px;
+      max-width: 900px;
+      width: min(100%, 960px);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.42);
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .close-btn {
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--snow);
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 200ms ease, border-color 200ms ease;
+    }
+
+    .close-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(254, 202, 87, 0.5);
+    }
+
+    .collage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .collage-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+    }
+
     @media (max-width: 640px) {
       main {
         padding: 36px 18px 48px;
@@ -189,6 +339,10 @@
 
       .card {
         min-height: 130px;
+      }
+
+      .modal-content {
+        padding: 16px;
       }
     }
   </style>
@@ -215,9 +369,9 @@
     </header>
 
     <section class="nav-grid">
-      <a class="card" href="#photos">
-        <h2 class="card-title">📸 Фотографии</h2>
-        <p class="card-subtitle">Подборка лучших снимков этого года и прошлых праздников.</p>
+      <a class="card" href="#last-new-year">
+        <h2 class="card-title">📸 Как встретили прошлый Новый год</h2>
+        <p class="card-subtitle">Нажмите, чтобы открыть коллаж из самых любимых кадров.</p>
       </a>
       <a class="card" href="#videos">
         <h2 class="card-title">🎥 Видео</h2>
@@ -233,9 +387,86 @@
       </a>
     </section>
 
+    <section id="last-new-year">
+      <h2 class="section-heading">✨ Наш прошлый Новый год</h2>
+      <p class="section-subtitle">Первое воспоминание в этом дашборде — как мы вместе встретили прошлый праздник. Нажми на блок ниже, чтобы увидеть маленький коллаж из самых теплых фотографий.</p>
+
+      <div class="memory-grid">
+        <div class="memory-card" role="button" tabindex="0" data-modal-target="collage-modal">
+          <p class="memory-title">🎇 Коллаж воспоминаний</p>
+          <p class="memory-text">Открой, чтобы окунуться в атмосферу прошлой ночи: бенгальские огни, искренние улыбки и уют рядом.</p>
+        </div>
+      </div>
+    </section>
+
     <footer>
       Скоро здесь появятся новые разделы и праздничные истории. Спасибо, что вы есть!
     </footer>
   </main>
+
+  <div class="modal-backdrop" id="collage-modal" aria-hidden="true" role="dialog" aria-labelledby="collage-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="collage-title">Коллаж: прошлый Новый год</h3>
+        <button class="close-btn" data-close-modal>Закрыть</button>
+      </div>
+      <div class="collage-grid">
+        <img class="collage-image" src="https://drive.google.com/uc?export=view&id=1-jAP14SmxwufZcXpK2dHJ7on82da86UF" alt="Салюты и огни на празднике" loading="lazy">
+        <img class="collage-image" src="https://drive.google.com/uc?export=view&id=1ifN4EvrKVh3j1FTOZF59-we0VJoQYT1a" alt="Селфи с бенгальскими огнями" loading="lazy">
+        <img class="collage-image" src="https://drive.google.com/uc?export=view&id=1FbmsL8Nf02X7gFlKewu_Dk-RZWN7xaIl" alt="Смех за праздничным столом" loading="lazy">
+        <img class="collage-image" src="https://drive.google.com/uc?export=view&id=1T5JA0fnV1iBNLuEvh0-1cVyUKMHKa66M" alt="Тосты и поднятые бокалы" loading="lazy">
+        <img class="collage-image" src="https://drive.google.com/uc?export=view&id=1vmyUQ8owbpbYSJL9uIjdhK6y1gwWPJtU" alt="Совместное фото на фоне гирлянд" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const memoryCards = document.querySelectorAll('[data-modal-target]');
+    const modal = document.getElementById('collage-modal');
+    const closeButtons = modal.querySelectorAll('[data-close-modal]');
+
+    function openModal(target) {
+      target.classList.add('active');
+      target.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal(target) {
+      target.classList.remove('active');
+      target.setAttribute('aria-hidden', 'true');
+    }
+
+    memoryCards.forEach(card => {
+      const targetId = card.getAttribute('data-modal-target');
+      const target = document.getElementById(targetId);
+
+      function handleOpen() {
+        if (target) openModal(target);
+      }
+
+      card.addEventListener('click', handleOpen);
+      card.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          handleOpen();
+        }
+      });
+    });
+
+    closeButtons.forEach(button => {
+      button.addEventListener('click', () => closeModal(modal));
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal(modal);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal(modal);
+      }
+    });
+  </script>
 </body>
 </html>
