@@ -6,7 +6,7 @@
   <title>Новый год: Мамочка и Папочка</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --deep-blue: #0b132b;
@@ -24,7 +24,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
       color: var(--snow);
       background: radial-gradient(120% 120% at 10% 10%, rgba(165, 232, 255, 0.22), transparent 40%),
                   radial-gradient(120% 120% at 90% 20%, rgba(254, 202, 87, 0.18), transparent 35%),
@@ -311,22 +311,24 @@
 
     .diary-page {
       position: relative;
-      background: radial-gradient(circle at 16% 12%, rgba(254, 202, 87, 0.14), transparent 30%),
-                  radial-gradient(circle at 84% 18%, rgba(165, 232, 255, 0.16), transparent 32%),
-                  linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      border-radius: 14px;
-      padding: 18px 18px 22px 24px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at 18% 12%, rgba(254, 202, 87, 0.22), transparent 28%),
+                  radial-gradient(circle at 78% 8%, rgba(165, 232, 255, 0.16), transparent 26%),
+                  linear-gradient(180deg, #fdf8ee, #f3ebdc 60%, #f8f1e3);
+      border-radius: 18px;
+      padding: 22px 22px 26px 32px;
+      border: 1px solid rgba(99, 82, 48, 0.16);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
       overflow: hidden;
+      color: #2d1b12;
     }
 
     .diary-page::before {
       content: '';
       position: absolute;
-      inset: 14px;
-      border-radius: 12px;
-      border: 1px dashed rgba(255, 255, 255, 0.08);
+      inset: 18px 18px 18px 60px;
+      border-radius: 14px;
+      border: 1px dashed rgba(99, 82, 48, 0.18);
+      box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.05);
       pointer-events: none;
     }
 
@@ -337,16 +339,17 @@
       bottom: 0;
       left: 72px;
       width: 1px;
-      background: linear-gradient(180deg, rgba(254, 202, 87, 0.5), transparent 12%, transparent 88%, rgba(165, 232, 255, 0.4));
-      opacity: 0.7;
+      background: linear-gradient(180deg, rgba(255, 166, 43, 0.45), transparent 12%, transparent 88%, rgba(109, 148, 192, 0.4));
+      opacity: 0.8;
       pointer-events: none;
     }
 
     .diary-heading {
-      font-family: 'Playfair Display', 'Times New Roman', serif;
-      font-size: 18px;
-      margin: 0 0 12px;
+      font-family: 'Caveat', 'Playfair Display', serif;
+      font-size: 22px;
+      margin: 0 0 14px;
       letter-spacing: 0.01em;
+      color: #3a251b;
     }
 
     .diary-entries {
@@ -358,63 +361,80 @@
     }
 
     .diary-entry {
+      position: relative;
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 12px 16px;
       align-items: start;
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 12px;
-      padding: 12px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.72));
+      border-radius: 14px;
+      padding: 14px 16px 16px;
+      border: 1px solid rgba(99, 82, 48, 0.16);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+    }
+
+    .diary-entry::before {
+      content: '';
+      position: absolute;
+      top: -18px;
+      left: 24px;
+      width: 86px;
+      height: 24px;
+      background: linear-gradient(90deg, rgba(254, 202, 87, 0.6), rgba(255, 255, 255, 0.8));
+      transform: rotate(-3deg);
+      border-radius: 6px;
+      filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.15));
+      opacity: 0.85;
     }
 
     .entry-pin {
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: radial-gradient(circle at 40% 35%, #ffe7a3, #feca57 60%, #d58b1a 100%);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+      background: radial-gradient(circle at 40% 35%, #ffd4a3, #f2a65a 60%, #c87425 100%);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.4);
       display: grid;
       place-items: center;
-      color: #5a2a00;
+      color: #4d1f07;
       font-weight: 800;
       letter-spacing: 0.02em;
     }
 
     .entry-text {
       margin: 0;
-      line-height: 1.65;
-      color: #eaf3ff;
+      line-height: 1.7;
+      color: #3c2b22;
       font-size: 15px;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
     }
 
     .entry-text strong {
-      color: #ffe3a1;
+      color: #b13f1e;
     }
 
     .diary-photo {
       grid-column: 1 / -1;
       width: 100%;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28), 0 0 0 6px rgba(11, 19, 43, 0.42);
-      background: linear-gradient(135deg, rgba(165, 232, 255, 0.18), rgba(11, 19, 43, 0.65));
+      border-radius: 14px;
+      border: 1px solid rgba(99, 82, 48, 0.24);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.86);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(235, 224, 204, 0.8));
       height: auto;
-      max-height: 380px;
+      max-height: 420px;
       object-fit: contain;
       cursor: zoom-in;
       transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
     }
 
     .diary-photo:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32), 0 0 0 6px rgba(11, 19, 43, 0.5);
+      transform: translateY(-4px) rotate(-0.3deg);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.26), 0 0 0 8px rgba(255, 255, 255, 0.9);
     }
 
     .diary-photo.image-failed {
       object-fit: contain;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     .photo-viewer {
@@ -598,31 +618,31 @@
           <div class="diary-entry">
             <span class="entry-pin">1</span>
             <p class="entry-text">Мы с <strong>кошкой Ханей</strong> приехали в гости в Ижевск, и хозяйские кошки приняли её по-дружески — целый кошачий клуб!</p>
-            <img class="diary-photo" data-drive-id="1ifN4EvrKVh3j1FTOZF59-we0VJoQYT1a" alt="Кошка Ханя знакомится с новой кошачьей подругой" data-caption="Ханя и новая подруга принюхиваются и уже не против делить плед." loading="lazy">
+            <img class="diary-photo" data-drive-id="1vmyUQ8owbpbYSJL9uIjdhK6y1gwWPJtU" alt="Две кошки осторожно знакомятся друг с другом" data-caption="Ханя и хозяйская кошка наблюдают друг за другом — первая встреча превращается в мягкое мурчание." loading="lazy">
           </div>
 
           <div class="diary-entry">
             <span class="entry-pin">2</span>
             <p class="entry-text">Мы много <strong>гуляли по зимнему Ижевску</strong>, и маленький путешественник в пухлом комбинезоне уверенно шагал по сугробам.</p>
-            <img class="diary-photo" data-drive-id="1-jAP14SmxwufZcXpK2dHJ7on82da86UF" alt="Мальчик в зимнем комбинезоне идёт по снегу" data-caption="Маленький исследователь шагает по свежему снегу, оставляя за собой крошечные следы." loading="lazy">
+            <img class="diary-photo" data-drive-id="1ifN4EvrKVh3j1FTOZF59-we0VJoQYT1a" alt="Мальчик в зимнем комбинезоне идёт по снегу" data-caption="Маленький исследователь шагает по свежему снегу, оставляя за собой крошечные следы." loading="lazy">
           </div>
 
           <div class="diary-entry">
             <span class="entry-pin">3</span>
             <p class="entry-text">На прогулке мы нашли <strong>огромные сосульки</strong> — так и вышло забавное фото всех троих с ледяными трофеями.</p>
-            <img class="diary-photo" data-drive-id="1FbmsL8Nf02X7gFlKewu_Dk-RZWN7xaIl" alt="Три члена семьи держат большие сосульки" data-caption="Трое с сосульками: хрупкий лёд в руках и смех в голосе." loading="lazy">
+            <img class="diary-photo" data-drive-id="1-jAP14SmxwufZcXpK2dHJ7on82da86UF" alt="Три члена семьи держат большие сосульки" data-caption="Трое с сосульками: хрупкий лёд в руках и смех в голосе." loading="lazy">
           </div>
 
           <div class="diary-entry">
             <span class="entry-pin">4</span>
             <p class="entry-text">Вы регулярно <strong>катались на лыжах</strong>: сначала папа уверенно прокладывал дорожку по снежной тропе.</p>
-            <img class="diary-photo" data-drive-id="1T5JA0fnV1iBNLuEvh0-1cVyUKMHKa66M" alt="Папа едет на лыжах по зимней тропе" data-caption="Папа на лыжне, вокруг — только сосны и мягкий снег." loading="lazy">
+            <img class="diary-photo" data-drive-id="1FbmsL8Nf02X7gFlKewu_Dk-RZWN7xaIl" alt="Папа едет на лыжах по зимней тропе" data-caption="Папа на лыжне, вокруг — только сосны и мягкий снег." loading="lazy">
           </div>
 
           <div class="diary-entry">
             <span class="entry-pin">5</span>
             <p class="entry-text">А затем эстафету подхватывала мама, и лыжи катили нас дальше по свежему, искрящемуся снегу.</p>
-            <img class="diary-photo" data-drive-id="1vmyUQ8owbpbYSJL9uIjdhK6y1gwWPJtU" alt="Мама на лыжах улыбается в объектив" data-caption="Мама улыбается прямо с лыжни — кадр, который хочется пересматривать." loading="lazy">
+            <img class="diary-photo" data-drive-id="1T5JA0fnV1iBNLuEvh0-1cVyUKMHKa66M" alt="Мама на лыжах улыбается в объектив" data-caption="Мама улыбается прямо с лыжни — кадр, который хочется пересматривать." loading="lazy">
           </div>
         </div>
       </div>
