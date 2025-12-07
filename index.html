@@ -176,52 +176,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       z-index: 2;
       text-align: center;
     }
 
-    .month-road .month-btn {
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
-      border: 1px solid rgba(255, 255, 255, 0.26);
-      color: #fdf7e8;
-      padding: 11px 16px;
-      border-radius: 14px;
-      cursor: pointer;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
-      min-width: 126px;
-      max-width: 210px;
-      text-align: center;
-      line-height: 1.3;
-      white-space: normal;
-    }
-
-    .month-road .month-btn:hover:not(:disabled) {
-      transform: translateY(-3px);
-      border-color: rgba(254, 202, 87, 0.6);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.36);
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.1));
-    }
-
-    .month-road .month-btn:focus-visible {
-      outline: 2px solid rgba(254, 202, 87, 0.8);
-      outline-offset: 3px;
-    }
-
-    .month-road .month-btn:disabled {
-      cursor: not-allowed;
-      opacity: 0.65;
-      border-color: rgba(255, 255, 255, 0.14);
-      box-shadow: none;
-    }
-
     .month-road .month-tag {
       position: relative;
-      padding: 4px 8px;
-      background: rgba(255, 255, 255, 0.88);
+      padding: 5px 10px;
+      background: rgba(255, 255, 255, 0.9);
       color: #2e4f3b;
       border-radius: 12px;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(36, 80, 58, 0.12);
@@ -239,6 +202,23 @@
       background: radial-gradient(circle at center, rgba(255, 255, 255, 0.75), transparent 60%);
       filter: blur(6px);
       z-index: -1;
+    }
+
+    .month-road .month-tag.is-action {
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(211, 233, 221, 0.9));
+      border: 1px solid rgba(46, 76, 109, 0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(36, 80, 58, 0.12);
+    }
+
+    .month-road .month-tag.is-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24), 0 0 0 1px rgba(36, 80, 58, 0.18);
+    }
+
+    .month-road .month-tag.is-action:focus-visible {
+      outline: 2px solid rgba(254, 202, 87, 0.8);
+      outline-offset: 3px;
     }
 
     .month-road .month-1 { --pos: 8%; --dip: 8px; }
@@ -722,51 +702,39 @@
           </svg>
         </div>
         <div class="month-stop month-1">
-          <button class="month-btn" type="button" data-modal-target="collage-modal">📸 Как встретили прошлый Новый год</button>
-          <span class="month-tag" aria-hidden="true">Январь</span>
+          <span class="month-tag is-action" role="button" tabindex="0" data-modal-target="collage-modal" aria-label="Открыть январский коллаж">Январь</span>
         </div>
         <div class="month-stop month-2">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш февраль</button>
           <span class="month-tag" aria-hidden="true">Февраль</span>
         </div>
         <div class="month-stop month-3">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш март</button>
           <span class="month-tag" aria-hidden="true">Март</span>
         </div>
         <div class="month-stop month-4">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш апрель</button>
           <span class="month-tag" aria-hidden="true">Апрель</span>
         </div>
         <div class="month-stop month-5">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш май</button>
           <span class="month-tag" aria-hidden="true">Май</span>
         </div>
         <div class="month-stop month-6">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш июнь</button>
           <span class="month-tag" aria-hidden="true">Июнь</span>
         </div>
         <div class="month-stop month-7">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш июль</button>
           <span class="month-tag" aria-hidden="true">Июль</span>
         </div>
         <div class="month-stop month-8">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш август</button>
           <span class="month-tag" aria-hidden="true">Август</span>
         </div>
         <div class="month-stop month-9">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш сентябрь</button>
           <span class="month-tag" aria-hidden="true">Сентябрь</span>
         </div>
         <div class="month-stop month-10">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш октябрь</button>
           <span class="month-tag" aria-hidden="true">Октябрь</span>
         </div>
         <div class="month-stop month-11">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш ноябрь</button>
           <span class="month-tag" aria-hidden="true">Ноябрь</span>
         </div>
         <div class="month-stop month-12">
-          <button class="month-btn" type="button" disabled title="Скоро">Как прошёл наш декабрь</button>
           <span class="month-tag" aria-hidden="true">Декабрь</span>
         </div>
       </div>
