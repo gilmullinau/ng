@@ -203,115 +203,36 @@
       margin-top: 12px;
     }
 
-    .memory-grid {
-      display: flex;
-      justify-content: center;
-      margin-top: 8px;
-    }
-
-    .garland-button {
-      position: relative;
-      background: linear-gradient(160deg, rgba(254, 202, 87, 0.25), rgba(165, 232, 255, 0.2)),
-                  linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 18px;
-      padding: 22px 26px 26px;
-      width: min(100%, 520px);
-      box-shadow: 0 16px 46px rgba(0, 0, 0, 0.32);
+      border-radius: 14px;
       color: inherit;
       cursor: pointer;
-      overflow: hidden;
-      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-      text-align: left;
-      isolation: isolate;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
     }
 
-    .garland-button:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 22px 54px rgba(0, 0, 0, 0.38);
-      border-color: rgba(254, 202, 87, 0.5);
+    .ghost-button:hover {
+      transform: translateY(-2px) scale(1.01);
+      border-color: rgba(254, 202, 87, 0.6);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
     }
 
-    .garland-button:focus-visible {
+    .ghost-button:focus-visible {
       outline: 2px solid rgba(254, 202, 87, 0.7);
       outline-offset: 3px;
     }
 
-    .garland-envelope {
-      position: relative;
-      background: radial-gradient(120% 120% at 20% 20%, rgba(254, 202, 87, 0.18), transparent 40%),
-                  radial-gradient(120% 120% at 80% 0%, rgba(165, 232, 255, 0.16), transparent 35%),
-                  rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      border-radius: 14px;
-      padding: 16px 18px;
-      box-shadow: inset 0 0 0 1px rgba(11, 19, 43, 0.35);
-      clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
-    }
-
-    .garland-envelope::after {
-      content: '';
-      position: absolute;
-      inset: 12px;
-      border-radius: 10px;
-      border: 1px dashed rgba(255, 255, 255, 0.4);
-      clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
-      pointer-events: none;
-      opacity: 0.9;
-    }
-
-    .garland-header {
+    .sparkles {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 18px;
-      margin: 0 0 6px;
-    }
-
-    .garland-text {
-      margin: 0;
-      color: #e8f4ff;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .string-lights {
-      position: absolute;
-      inset: 4px;
-      border-radius: 16px;
-      pointer-events: none;
-      z-index: -1;
-      background:
-        radial-gradient(circle at 20% 18%, rgba(254, 202, 87, 0.55) 0 7px, transparent 10px),
-        radial-gradient(circle at 35% 22%, rgba(165, 232, 255, 0.58) 0 6px, transparent 9px),
-        radial-gradient(circle at 55% 16%, rgba(254, 202, 87, 0.5) 0 7px, transparent 10px),
-        radial-gradient(circle at 72% 20%, rgba(165, 232, 255, 0.6) 0 6px, transparent 9px),
-        radial-gradient(circle at 88% 18%, rgba(254, 202, 87, 0.52) 0 7px, transparent 11px),
-        radial-gradient(circle at 12% 78%, rgba(165, 232, 255, 0.56) 0 6px, transparent 10px),
-        radial-gradient(circle at 30% 84%, rgba(254, 202, 87, 0.58) 0 8px, transparent 12px),
-        radial-gradient(circle at 52% 78%, rgba(165, 232, 255, 0.62) 0 7px, transparent 10px),
-        radial-gradient(circle at 70% 82%, rgba(254, 202, 87, 0.6) 0 7px, transparent 12px),
-        radial-gradient(circle at 88% 80%, rgba(165, 232, 255, 0.64) 0 6px, transparent 10px);
-      mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
-      border: 3px dashed rgba(255, 255, 255, 0.25);
-      animation: twinkle 2.8s ease-in-out infinite;
-    }
-
-    .string-lights::after {
-      content: '';
-      position: absolute;
-      inset: -10px;
-      border-radius: 20px;
-      border: 1px dashed rgba(254, 202, 87, 0.25);
-      filter: blur(10px);
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 8px rgba(254, 202, 87, 0.35)); }
-      40% { opacity: 1; filter: drop-shadow(0 0 14px rgba(254, 202, 87, 0.48)); }
-      70% { opacity: 0.9; filter: drop-shadow(0 0 12px rgba(165, 232, 255, 0.46)); }
+      gap: 4px;
+      font-size: 16px;
     }
 
     .modal-backdrop {
@@ -412,7 +333,7 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28), 0 0 0 6px rgba(11, 19, 43, 0.42);
       background: linear-gradient(135deg, rgba(165, 232, 255, 0.18), rgba(11, 19, 43, 0.65));
-      transition: opacity 200ms ease, transform 200ms ease;
+      transition: opacity 200ms ease, transform 200ms ease, box-shadow 200ms ease;
       position: relative;
       z-index: 1;
     }
@@ -422,7 +343,54 @@
       opacity: 0.85;
     }
 
-    .collage-image:hover { transform: translateY(-4px); }
+    .collage-image:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32), 0 0 0 6px rgba(11, 19, 43, 0.5);
+    }
+
+    .photo-viewer {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 20;
+      backdrop-filter: blur(4px);
+    }
+
+    .photo-viewer.active {
+      display: flex;
+    }
+
+    .photo-frame {
+      position: relative;
+      background: linear-gradient(140deg, rgba(12, 20, 43, 0.94), rgba(15, 28, 61, 0.92));
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 14px;
+      max-width: 90vw;
+      max-height: 88vh;
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .photo-frame img {
+      display: block;
+      max-width: 100%;
+      max-height: 72vh;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+      object-fit: contain;
+    }
+
+    .photo-caption {
+      margin: 10px 4px 0;
+      color: #e8f4ff;
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
     @media (max-width: 640px) {
       main {
@@ -466,8 +434,9 @@
 
     <section class="nav-grid">
       <a class="card" href="#last-new-year">
+        <div class="pill" aria-hidden="true">Коллаж</div>
         <h2 class="card-title">📸 Как встретили прошлый Новый год</h2>
-        <p class="card-subtitle">Нажмите, чтобы открыть коллаж из самых любимых кадров.</p>
+        <p class="card-subtitle">Одна кнопка — и весь прошлогодний праздник открывается перед нами.</p>
       </a>
       <a class="card" href="#videos">
         <h2 class="card-title">🎥 Видео</h2>
@@ -485,17 +454,12 @@
 
     <section id="last-new-year">
       <h2 class="section-heading">✨ Наш прошлый Новый год</h2>
-      <p class="section-subtitle">Первое воспоминание в этом дашборде — как мы вместе встретили прошлый праздник. Нажми на блок ниже, чтобы увидеть маленький коллаж из самых теплых фотографий.</p>
+      <p class="section-subtitle">Это теплое воспоминание открывается по одной кнопке — нажми и увидишь весь коллаж, а каждый кадр можно раскрыть крупно.</p>
 
-      <div class="memory-grid">
-        <button class="garland-button" data-modal-target="collage-modal">
-          <span class="string-lights" aria-hidden="true"></span>
-          <div class="garland-envelope">
-            <p class="garland-header">💌 Гирлянда-воспоминание</p>
-            <p class="garland-text">Нажми, чтобы «распечатать» конверт и сразу открыть наш коллаж: огоньки, смех и прошлогодняя магия.</p>
-          </div>
-        </button>
-      </div>
+      <button class="ghost-button" type="button" data-modal-target="collage-modal">
+        <span class="sparkles">✨✨</span>
+        <span>Открыть коллаж прямо сейчас</span>
+      </button>
     </section>
 
     <footer>
@@ -519,10 +483,21 @@
     </div>
   </div>
 
+  <div class="photo-viewer" id="photo-viewer" aria-hidden="true" role="dialog" aria-label="Просмотр фото">
+    <div class="photo-frame">
+      <button class="close-btn" data-photo-close style="position:absolute; top:10px; right:10px;">Закрыть</button>
+      <img src="" alt="" id="photo-viewer-img">
+      <p class="photo-caption" id="photo-viewer-caption"></p>
+    </div>
+  </div>
+
   <script>
     const memoryCards = document.querySelectorAll('[data-modal-target]');
     const modal = document.getElementById('collage-modal');
     const closeButtons = modal.querySelectorAll('[data-close-modal]');
+    const photoViewer = document.getElementById('photo-viewer');
+    const photoImg = document.getElementById('photo-viewer-img');
+    const photoCaption = document.getElementById('photo-viewer-caption');
 
     function openModal(target) {
       target.classList.add('active');
@@ -565,6 +540,10 @@
       if (event.key === 'Escape' && modal.classList.contains('active')) {
         closeModal(modal);
       }
+
+      if (event.key === 'Escape' && photoViewer.classList.contains('active')) {
+        closePhotoViewer();
+      }
     });
 
     const driveSources = (id) => ([
@@ -589,6 +568,37 @@
 
       img.addEventListener('error', setNextSource);
       setNextSource();
+    });
+
+    function openPhotoViewer(src, alt) {
+      photoImg.src = src;
+      photoImg.alt = alt;
+      photoCaption.textContent = alt;
+      photoViewer.classList.add('active');
+      photoViewer.setAttribute('aria-hidden', 'false');
+    }
+
+    function closePhotoViewer() {
+      photoViewer.classList.remove('active');
+      photoViewer.setAttribute('aria-hidden', 'true');
+      photoImg.src = '';
+    }
+
+    document.querySelectorAll('.collage-image').forEach((img) => {
+      img.addEventListener('click', () => {
+        const sources = driveSources(img.dataset.driveId);
+        openPhotoViewer(sources[0], img.alt);
+      });
+    });
+
+    photoViewer.addEventListener('click', (event) => {
+      if (event.target === photoViewer) {
+        closePhotoViewer();
+      }
+    });
+
+    document.querySelectorAll('[data-photo-close]').forEach((btn) => {
+      btn.addEventListener('click', closePhotoViewer);
     });
   </script>
 </body>
