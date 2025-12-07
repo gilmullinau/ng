@@ -193,13 +193,17 @@
       cursor: pointer;
       transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
       width: max-content;
-      max-width: 220px;
+      max-width: 240px;
       font-size: 15px;
       line-height: 1.35;
       text-align: center;
       backdrop-filter: blur(6px);
       position: relative;
       top: -8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
     .month-road .month-cta:hover {
@@ -220,6 +224,18 @@
       box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
     }
 
+    .month-road .month-cta .month-sticker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: rgba(254, 202, 87, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 14px rgba(0, 0, 0, 0.28);
+      font-size: 16px;
+    }
+
     .month-road .month-label {
       position: relative;
       padding: 4px 8px;
@@ -236,8 +252,8 @@
 
     .month-road .month-1 { --x: 10%; --y: 10px; }
     .month-road .month-2 { --x: 38%; --y: 10px; }
-    .month-road .month-3 { --x: 82%; --y: 140px; }
-    .month-road .month-4 { --x: 56%; --y: 140px; }
+    .month-road .month-3 { --x: 56%; --y: 140px; }
+    .month-road .month-4 { --x: 82%; --y: 140px; }
     .month-road .month-5 { --x: 18%; --y: 270px; }
     .month-road .month-6 { --x: 46%; --y: 270px; }
     .month-road .month-7 { --x: 80%; --y: 400px; }
@@ -723,7 +739,10 @@
           <span class="month-label" aria-hidden="true">Февраль</span>
         </div>
         <div class="month-stop month-3">
-          <button class="month-cta" data-modal-target="march-collage-modal" aria-label="Открыть мартовский коллаж">Как мы провели март</button>
+          <button class="month-cta" data-modal-target="march-collage-modal" aria-label="Открыть мартовский коллаж">
+            <span class="month-sticker" aria-hidden="true">🎢</span>
+            <span>Эмоциональные качели в марте</span>
+          </button>
           <span class="month-label" aria-hidden="true">Март</span>
         </div>
         <div class="month-stop month-4">
@@ -816,11 +835,11 @@
   <div class="modal-backdrop" id="march-collage-modal" aria-hidden="true" role="dialog" aria-labelledby="march-collage-title">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="march-collage-title">Коллаж: мартовские приключения</h3>
+        <h3 class="modal-title" id="march-collage-title">Коллаж: эмоциональные качели марта</h3>
         <button class="close-btn" data-close-modal>Закрыть</button>
       </div>
       <div class="diary-page" role="document">
-        <p class="diary-heading">Март: от строек до моря — как мы прожили этот месяц</p>
+        <p class="diary-heading">Март: эмоциональные качели — от ремонта до праздников и моря</p>
         <div class="diary-entries">
           <div class="diary-entry">
             <span class="entry-pin">1</span>
@@ -842,7 +861,7 @@
 
           <div class="diary-entry">
             <span class="entry-pin">4</span>
-            <p class="entry-text">На отдыхе нас встретил <strong>потрясающий вечерний пейзаж</strong> — море, закат и полное спокойствие.</p>
+            <p class="entry-text">Перед отпуском всей семьёй отметили <strong>день рождения Макса (14 марта)</strong> и <strong>папы (19 марта)</strong>, а уже на море нас встретил <strong>потрясающий вечерний пейзаж</strong> — закат и полное спокойствие.</p>
             <img class="diary-photo" data-drive-id="11GpwWFyE8j8ry2c-1geWtiDOLXufq_Co" alt="Вечерний морской пейзаж" data-caption="Закат над водой: небо переливается цветами, а в воздухе — вкус солёного бриза." loading="lazy">
           </div>
 
