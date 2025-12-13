@@ -6,13 +6,13 @@
   <title>Новый год: Мамочка и Папочка</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --deep-blue: #0b132b;
-      --frost: #a5e8ff;
-      --snow: #f7fbff;
-      --accent: #feca57;
+      --deep-blue: #0c0f26;
+      --frost: #d7eaff;
+      --snow: #f7f1e8;
+      --accent: #f9c784;
       --card: rgba(255, 255, 255, 0.08);
       --card-border: rgba(255, 255, 255, 0.18);
     }
@@ -24,13 +24,17 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
       color: var(--snow);
-      background: radial-gradient(120% 120% at 10% 10%, rgba(165, 232, 255, 0.22), transparent 40%),
-                  radial-gradient(120% 120% at 90% 20%, rgba(254, 202, 87, 0.18), transparent 35%),
-                  linear-gradient(135deg, #0b132b, #1c2541 60%, #0b132b);
+      background: radial-gradient(140% 120% at 18% 12%, rgba(249, 192, 146, 0.22), transparent 38%),
+                  radial-gradient(120% 140% at 84% 6%, rgba(157, 201, 255, 0.2), transparent 40%),
+                  linear-gradient(135deg, #0b1024, #1a2340 55%, #1f273c);
       background-attachment: fixed;
       overflow-x: hidden;
+    }
+
+    body.lock-scroll {
+      overflow: hidden;
     }
 
     .snow {
@@ -77,6 +81,31 @@
       gap: 32px;
     }
 
+    section {
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(8px);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 8px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .section-subtitle {
+      margin: 0 0 20px;
+      color: #e8f4ff;
+      line-height: 1.6;
+    }
+
     header {
       background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
       border: 1px solid var(--card-border);
@@ -102,13 +131,141 @@
     }
 
     .nav-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      padding: 18px 14px 28px;
+      isolation: isolate;
     }
+
+    .month-road {
+      position: relative;
+      min-height: 760px;
+      padding: 34px 10px 86px;
+      margin: 4px 4px 0;
+      isolation: isolate;
+    }
+
+    .month-road .road-line {
+      position: absolute;
+      inset: 22px 12px 56px 12px;
+      z-index: 0;
+    }
+
+    .month-road .road-line svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
+    }
+
+    .month-road .road-line path {
+      fill: none;
+      stroke: url(#roadGradient);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .month-road .month-stop {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      transform: translate(-50%, 0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .month-road .month-cta {
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+      color: #fdf4dc;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+      width: max-content;
+      max-width: 240px;
+      font-size: 15px;
+      line-height: 1.35;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      position: relative;
+      top: -18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .month-road .month-cta:hover {
+      transform: translateY(-3px);
+      border-color: rgba(254, 202, 87, 0.65);
+      box-shadow: 0 22px 46px rgba(0, 0, 0, 0.38);
+    }
+
+    .month-road .month-cta:focus-visible {
+      outline: 2px solid rgba(254, 202, 87, 0.85);
+      outline-offset: 3px;
+    }
+
+    .month-road .month-cta[disabled] {
+      opacity: 0.65;
+      cursor: default;
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+    }
+
+    .month-road .month-cta .month-sticker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: rgba(254, 202, 87, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 6px 14px rgba(0, 0, 0, 0.28);
+      font-size: 16px;
+    }
+
+    .month-road .month-label {
+      position: relative;
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.7);
+      color: #315c8e;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(46, 76, 109, 0.15);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.9;
+      margin-top: 10px;
+    }
+
+    .month-road .month-1 { --x: 10%; --y: 10px; }
+    .month-road .month-2 { --x: 38%; --y: 10px; }
+    .month-road .month-3 { --x: 62%; --y: 140px; }
+    .month-road .month-4 { --x: 91%; --y: 140px; }
+    .month-road .month-5 { --x: 18%; --y: 270px; }
+    .month-road .month-6 { --x: 46%; --y: 270px; }
+    .month-road .month-7 { --x: 80%; --y: 400px; }
+    .month-road .month-8 { --x: 54%; --y: 400px; }
+    .month-road .month-9 { --x: 20%; --y: 530px; }
+    .month-road .month-10 { --x: 48%; --y: 530px; }
+    .month-road .month-11 { --x: 82%; --y: 660px; }
+    .month-road .month-12 { --x: 56%; --y: 660px; }
 
     .card {
       position: relative;
+      z-index: 1;
       background: var(--card);
       border: 1px solid var(--card-border);
       border-radius: 16px;
@@ -119,6 +276,23 @@
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
       transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
       overflow: hidden;
+      display: block;
+    }
+
+    .card.card-button {
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      color: inherit;
+      background: var(--card);
+      font: inherit;
+      padding: 20px;
+    }
+
+    .card.card-button:focus-visible {
+      outline: 2px solid rgba(254, 202, 87, 0.8);
+      outline-offset: 3px;
     }
 
     .card:hover {
@@ -178,6 +352,331 @@
       margin-top: 12px;
     }
 
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      color: inherit;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+    }
+
+    .ghost-button:hover {
+      transform: translateY(-2px) scale(1.01);
+      border-color: rgba(254, 202, 87, 0.6);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+    }
+
+    .ghost-button:focus-visible {
+      outline: 2px solid rgba(254, 202, 87, 0.7);
+      outline-offset: 3px;
+    }
+
+    .sparkles {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 16px;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: linear-gradient(140deg, rgba(12, 20, 43, 0.94), rgba(15, 28, 61, 0.92)),
+                  radial-gradient(120% 120% at 10% 10%, rgba(254, 202, 87, 0.2), transparent 45%);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 22px;
+      max-width: 980px;
+      width: min(100%, 980px);
+      max-height: 90vh;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.46);
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .modal-content::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border-radius: 16px;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      pointer-events: none;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .close-btn {
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--snow);
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 200ms ease, border-color 200ms ease;
+    }
+
+    .close-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(254, 202, 87, 0.5);
+    }
+
+    .diary-page {
+      position: relative;
+      background: radial-gradient(circle at 18% 12%, rgba(167, 209, 255, 0.28), transparent 28%),
+                  radial-gradient(circle at 78% 8%, rgba(255, 235, 204, 0.18), transparent 26%),
+                  linear-gradient(180deg, #f1f6ff, #e1eaf9 62%, #eaf1ff);
+      border-radius: 18px;
+      padding: 22px 22px 26px 32px;
+      border: 1px solid rgba(46, 76, 109, 0.14);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      overflow: hidden;
+      color: #1f2d3f;
+    }
+
+    .diary-page::before {
+      content: '';
+      position: absolute;
+      inset: 18px 18px 18px 60px;
+      border-radius: 14px;
+      border: 1px dashed rgba(46, 76, 109, 0.22);
+      box-shadow: inset 0 0 12px rgba(28, 47, 78, 0.06);
+      pointer-events: none;
+    }
+
+    .diary-page::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 72px;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(255, 186, 102, 0.5), transparent 12%, transparent 88%, rgba(87, 135, 187, 0.5));
+      opacity: 0.82;
+      pointer-events: none;
+    }
+
+    .diary-heading {
+      font-family: 'Caveat', 'Playfair Display', serif;
+      font-size: 22px;
+      margin: 0 0 14px;
+      letter-spacing: 0.01em;
+      color: #1c2b41;
+    }
+
+    .diary-entries {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .diary-entry {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px 16px;
+      align-items: start;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(231, 240, 255, 0.82));
+      border-radius: 14px;
+      padding: 14px 16px 16px;
+      border: 1px solid rgba(46, 76, 109, 0.14);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+    }
+
+    .diary-entry::before {
+      content: '';
+      position: absolute;
+      top: -18px;
+      left: 24px;
+      width: 86px;
+      height: 24px;
+      background: linear-gradient(90deg, rgba(254, 202, 87, 0.6), rgba(255, 255, 255, 0.8));
+      transform: rotate(-3deg);
+      border-radius: 6px;
+      filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.15));
+      opacity: 0.85;
+    }
+
+    .entry-pin {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #5b8ac6, #315c8e 60%, #1e3f67 100%);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      display: grid;
+      place-items: center;
+      color: #e9f3ff;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    .entry-text {
+      margin: 0;
+      line-height: 1.7;
+      color: #1f2d3f;
+      font-size: 15px;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    }
+
+    .entry-text strong {
+      color: #b36d7a;
+    }
+
+    .diary-photo {
+      grid-column: 1 / -1;
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(46, 76, 109, 0.18);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(255, 255, 255, 0.9);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(220, 232, 255, 0.82));
+      height: auto;
+      max-height: 420px;
+      object-fit: contain;
+      cursor: zoom-in;
+      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+    }
+
+    .diary-photo:hover {
+      transform: translateY(-4px) rotate(-0.3deg);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.26), 0 0 0 8px rgba(255, 255, 255, 0.9);
+    }
+
+    .diary-photo.image-failed {
+      object-fit: contain;
+      opacity: 0.9;
+    }
+
+    .photo-viewer {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 20;
+      backdrop-filter: blur(4px);
+    }
+
+    .photo-viewer.active {
+      display: flex;
+    }
+
+    .photo-frame {
+      position: relative;
+      background: linear-gradient(140deg, rgba(12, 20, 43, 0.94), rgba(15, 28, 61, 0.92));
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 14px;
+      max-width: 90vw;
+      max-height: 88vh;
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+
+    .photo-frame img {
+      display: block;
+      max-width: 100%;
+      max-height: 72vh;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+      object-fit: contain;
+      transition: transform 220ms ease;
+      cursor: zoom-in;
+    }
+
+    .photo-caption {
+      margin: 10px 4px 0;
+      color: #e8f4ff;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .photo-nav {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+      padding: 0 6px;
+    }
+
+    .nav-btn {
+      pointer-events: auto;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(12, 20, 43, 0.82);
+      color: #fff;
+      border-radius: 999px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+      transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+    }
+
+    .nav-btn:hover { transform: translateY(-2px) scale(1.02); border-color: rgba(254, 202, 87, 0.7); background: rgba(20, 34, 70, 0.92); }
+    .nav-btn:focus-visible { outline: 2px solid rgba(254, 202, 87, 0.7); outline-offset: 2px; }
+
+    .photo-indicator {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #e8f4ff;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .photo-frame img.zoomed {
+      transform: scale(1.22);
+      cursor: zoom-out;
+    }
+
     @media (max-width: 640px) {
       main {
         padding: 36px 18px 48px;
@@ -189,6 +688,10 @@
 
       .card {
         min-height: 130px;
+      }
+
+      .modal-content {
+        padding: 16px;
       }
     }
   </style>
@@ -215,27 +718,404 @@
     </header>
 
     <section class="nav-grid">
-      <a class="card" href="#photos">
-        <h2 class="card-title">📸 Фотографии</h2>
-        <p class="card-subtitle">Подборка лучших снимков этого года и прошлых праздников.</p>
-      </a>
-      <a class="card" href="#videos">
-        <h2 class="card-title">🎥 Видео</h2>
-        <p class="card-subtitle">Короткие ролики, поздравления и трогательные моменты.</p>
-      </a>
-      <a class="card" href="#letters">
-        <h2 class="card-title">💌 Письма и пожелания</h2>
-        <p class="card-subtitle">Слова любви и благодарности, написанные специально для вас.</p>
-      </a>
-      <a class="card" href="#plans">
-        <h2 class="card-title">✨ Планы и сюрпризы</h2>
-        <p class="card-subtitle">Идеи для совместных традиций, впечатлений и будущих путешествий.</p>
-      </a>
+      <div class="month-road" aria-label="Лента месяцев">
+        <div class="road-line" aria-hidden="true">
+          <svg viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="roadGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#c6e7cf" stop-opacity="0.95" />
+                <stop offset="100%" stop-color="#d6f0da" stop-opacity="0.92" />
+              </linearGradient>
+            </defs>
+            <path d="M30 40 H500 Q560 40 560 90 V120 Q560 170 640 170 H1140 Q1180 170 1180 205 V240 Q1180 300 1040 300 H260 Q200 300 200 340 V370 Q200 420 300 420 H1080 Q1120 420 1120 455 V486 Q1120 540 1000 540 H200 Q150 540 150 580 V610 Q150 660 300 660 H1120" />
+          </svg>
+        </div>
+        <div class="month-stop month-1">
+          <button class="month-cta" data-modal-target="collage-modal" aria-label="Открыть январский коллаж">📸 Как встретили прошлый Новый год</button>
+          <span class="month-label" aria-hidden="true">Январь</span>
+        </div>
+        <div class="month-stop month-2">
+          <button class="month-cta" disabled aria-label="Раздел про февраль пока в разработке">Как мы провели февраль</button>
+          <span class="month-label" aria-hidden="true">Февраль</span>
+        </div>
+        <div class="month-stop month-3">
+          <button class="month-cta" data-modal-target="march-collage-modal" aria-label="Открыть мартовский коллаж">
+            <span class="month-sticker" aria-hidden="true">🎢</span>
+            <span>Эмоциональные качели в марте</span>
+          </button>
+          <span class="month-label" aria-hidden="true">Март</span>
+        </div>
+        <div class="month-stop month-4">
+          <button class="month-cta" disabled aria-label="Раздел про апрель пока в разработке">Как мы провели апрель</button>
+          <span class="month-label" aria-hidden="true">Апрель</span>
+        </div>
+        <div class="month-stop month-5">
+          <button class="month-cta" disabled aria-label="Раздел про май пока в разработке">Как мы провели май</button>
+          <span class="month-label" aria-hidden="true">Май</span>
+        </div>
+        <div class="month-stop month-6">
+          <button class="month-cta" disabled aria-label="Раздел про июнь пока в разработке">Как мы провели июнь</button>
+          <span class="month-label" aria-hidden="true">Июнь</span>
+        </div>
+        <div class="month-stop month-7">
+          <button class="month-cta" disabled aria-label="Раздел про июль пока в разработке">Как мы провели июль</button>
+          <span class="month-label" aria-hidden="true">Июль</span>
+        </div>
+        <div class="month-stop month-8">
+          <button class="month-cta" disabled aria-label="Раздел про август пока в разработке">Как мы провели август</button>
+          <span class="month-label" aria-hidden="true">Август</span>
+        </div>
+        <div class="month-stop month-9">
+          <button class="month-cta" disabled aria-label="Раздел про сентябрь пока в разработке">Как мы провели сентябрь</button>
+          <span class="month-label" aria-hidden="true">Сентябрь</span>
+        </div>
+        <div class="month-stop month-10">
+          <button class="month-cta" disabled aria-label="Раздел про октябрь пока в разработке">Как мы провели октябрь</button>
+          <span class="month-label" aria-hidden="true">Октябрь</span>
+        </div>
+        <div class="month-stop month-11">
+          <button class="month-cta" disabled aria-label="Раздел про ноябрь пока в разработке">Как мы провели ноябрь</button>
+          <span class="month-label" aria-hidden="true">Ноябрь</span>
+        </div>
+        <div class="month-stop month-12">
+          <button class="month-cta" disabled aria-label="Раздел про декабрь пока в разработке">Как мы провели декабрь</button>
+          <span class="month-label" aria-hidden="true">Декабрь</span>
+        </div>
+      </div>
     </section>
 
     <footer>
       Скоро здесь появятся новые разделы и праздничные истории. Спасибо, что вы есть!
     </footer>
   </main>
+
+  <div class="modal-backdrop" id="collage-modal" aria-hidden="true" role="dialog" aria-labelledby="collage-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="collage-title">Коллаж: прошлый Новый год</h3>
+        <button class="close-btn" data-close-modal>Закрыть</button>
+      </div>
+      <div class="diary-page" role="document">
+        <p class="diary-heading">Вспомним то, как мы встретили прошлый Новый год...</p>
+        <div class="diary-entries">
+          <div class="diary-entry">
+            <span class="entry-pin">1</span>
+            <p class="entry-text">Мы с <strong>кошкой Ханей</strong> приехали в гости в Ижевск, и хозяйские кошки приняли её по-дружески — целый кошачий клуб!</p>
+            <img class="diary-photo" data-drive-id="1vmyUQ8owbpbYSJL9uIjdhK6y1gwWPJtU" alt="Две кошки осторожно знакомятся друг с другом" data-caption="Ханя и хозяйская кошка наблюдают друг за другом — первая встреча превращается в мягкое мурчание." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">2</span>
+            <p class="entry-text">Мы много <strong>гуляли по зимнему Ижевску</strong>, и маленький путешественник в пухлом комбинезоне уверенно шагал по сугробам.</p>
+            <img class="diary-photo" data-drive-id="1-jAP14SmxwufZcXpK2dHJ7on82da86UF" alt="Мальчик в зимнем комбинезоне идёт по снегу" data-caption="Маленький исследователь шагает по свежему снегу, оставляя за собой крошечные следы." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">3</span>
+            <p class="entry-text">На прогулке мы нашли <strong>огромные сосульки</strong> — так и вышло забавное фото всех троих с ледяными трофеями.</p>
+            <img class="diary-photo" data-drive-id="1ifN4EvrKVh3j1FTOZF59-we0VJoQYT1a" alt="Три члена семьи держат большие сосульки" data-caption="Трое с сосульками: хрупкий лёд в руках и смех в голосе." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">4</span>
+            <p class="entry-text">Вы регулярно <strong>катались на лыжах</strong>: сначала папа уверенно прокладывал дорожку по снежной тропе.</p>
+            <img class="diary-photo" data-drive-id="1FbmsL8Nf02X7gFlKewu_Dk-RZWN7xaIl" alt="Папа едет на лыжах по зимней тропе" data-caption="Папа на лыжне, вокруг — только сосны и мягкий снег." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">5</span>
+            <p class="entry-text">А затем эстафету подхватывала мама, и лыжи катили нас дальше по свежему, искрящемуся снегу.</p>
+            <img class="diary-photo" data-drive-id="1T5JA0fnV1iBNLuEvh0-1cVyUKMHKa66M" alt="Мама на лыжах улыбается в объектив" data-caption="Мама улыбается прямо с лыжни — кадр, который хочется пересматривать." loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="march-collage-modal" aria-hidden="true" role="dialog" aria-labelledby="march-collage-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="march-collage-title">Коллаж: эмоциональные качели марта</h3>
+        <button class="close-btn" data-close-modal>Закрыть</button>
+      </div>
+      <div class="diary-page" role="document">
+        <p class="diary-heading">Март: эмоциональные качели — от ремонта до праздников и моря</p>
+        <div class="diary-entries">
+          <div class="diary-entry">
+            <span class="entry-pin">1</span>
+            <p class="entry-text">В начале марта мы активно <strong>занимались внутренней отделкой дома в Степаново</strong> — каждая мелочь делала дом всё уютнее.</p>
+            <img class="diary-photo" data-drive-id="1VN8FB1ZJYhbpVVchMO07y85eRJQpfeMZ" alt="Работы по внутренней отделке дома" data-caption="Степаново: свежая отделка, тепло света и ощущение готового гнёздышка." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">2</span>
+            <p class="entry-text">Потом наступил непростой момент: <strong>Даня сломал ногу</strong>, и вся семья сплотилась вокруг него.</p>
+            <img class="diary-photo" data-drive-id="1KWULcLFKLmtaz-zmafCF1Wb5cWUXg9bu" alt="Даня с загипсованной ногой" data-caption="Даня с гипсом и мужественной улыбкой — всё пройдёт, главное вместе." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">3</span>
+            <p class="entry-text">Ближе к отпуску вы заехали ко мне в Москву, и <strong>все познакомились с Мишей</strong> — получилась теплая встреча.</p>
+            <img class="diary-photo" data-drive-id="1BaDXlLrb12e1uFer9F4w_UahhEgWPXg-" alt="Семейная встреча с Мишей в Москве" data-caption="Московский вечер и знакомство с Мишей: улыбки, объятия и планы на отдых." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">4</span>
+            <p class="entry-text">Перед отпуском всей семьёй отметили <strong>день рождения Макса (14 марта)</strong> и <strong>папы (19 марта)</strong>, а уже на море нас встретил <strong>потрясающий вечерний пейзаж</strong> — закат и полное спокойствие.</p>
+            <img class="diary-photo" data-drive-id="11GpwWFyE8j8ry2c-1geWtiDOLXufq_Co" alt="Вечерний морской пейзаж" data-caption="Закат над водой: небо переливается цветами, а в воздухе — вкус солёного бриза." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">5</span>
+            <p class="entry-text">Мальчики радостно <strong>ныряли с ластами</strong>, исследуя каждый уголок воды.</p>
+            <img class="diary-photo" data-drive-id="1fw-amyLMxaqXDyOrZDEzyrWjeY1VoA6b" alt="Мальчики в масках и ластах у воды" data-caption="Флотилия исследователей: маски, ласты и азарт в глазах." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">6</span>
+            <p class="entry-text">Папа оказался <strong>в своей стихии на катере</strong> — море, скорость и уверенный капитан.</p>
+            <img class="diary-photo" data-drive-id="10_tKBXa5UW0yMoMnRPhnAFU2Tpe4bA1W" alt="Папа за штурвалом катера" data-caption="Штурвал, ветер и папина довольная улыбка — абсолютная свобода." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">7</span>
+            <p class="entry-text">Вы всей командой <strong>вышли в море на яхте</strong> — настоящий семейный экипаж.</p>
+            <img class="diary-photo" data-drive-id="10njzM57N6shozWDHYmGW7I_EfapAcFnn" alt="Вся семья на палубе яхты" data-caption="Семья на яхте: ветер в волосах и общее приключение." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">8</span>
+            <p class="entry-text">Потом каждый по очереди <strong>позировал на палубе</strong>, чтобы запомнить этот день.</p>
+            <img class="diary-photo" data-drive-id="1jBBsYCB0_CUgAJCgU-UugfVzaOMi8dxk" alt="Портрет на палубе яхты" data-caption="Первый морской портрет: солнце, паруса и искренний смех." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">9</span>
+            <p class="entry-text">Ещё один кадр <strong>на фоне моря</strong> — чтобы ни один улыбчивый момент не потерялся.</p>
+            <img class="diary-photo" data-drive-id="1-GDa2lhREnzM20Wzv_iKRslP968CGU1P" alt="Человек улыбается на яхте" data-caption="Морская прогулка продолжается: море искрится, настроение летит вверх." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">10</span>
+            <p class="entry-text">И ещё один <strong>яркий портрет с палубы</strong> — всё, чтобы сохранить каждую эмоцию.</p>
+            <img class="diary-photo" data-drive-id="12WYNP-gUUfpMRtd_7hYcn85W0bS6IZeR" alt="Портрет на палубе на фоне моря" data-caption="Третий морской портрет: солёный воздух и мягкий солнечный свет." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">11</span>
+            <p class="entry-text">После моря <strong>мама уютно устроилась с Даней в гамаке</strong> — редкие минуты тихого отдыха.</p>
+            <img class="diary-photo" data-drive-id="1D0wP7rZkWVpSpGxQEGnE8ezd_Y7XlU4F" alt="Мама с сыном в гамаке" data-caption="Гамак, объятия и счастливые лица — лучшее завершение дня." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">12</span>
+            <p class="entry-text">Папа не выдержал и <strong>перехватил гамак</strong>, чтобы тоже насладиться качелями.</p>
+            <img class="diary-photo" data-drive-id="1ZugDv0bxmdK1CRaJ6HMneEZrwtVG_CNj" alt="Папа отдыхает в гамаке" data-caption="Папа в гамаке — кажется, теперь очередь за ним отдыхать." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">13</span>
+            <p class="entry-text">А завершили отдых в нашем стиле: <strong>Макс с разбегу прыгает на батуте</strong>.</p>
+            <img class="diary-photo" data-drive-id="1N_sYTcS7-msfA8-kMhWgkk9Uh4YZAkN5" alt="Макс прыгает на батуте" data-caption="Макс летит в небо на батуте — энергия бьёт ключом." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">14</span>
+            <p class="entry-text">И конечно, <strong>Даня повторяет трюк</strong>, доказывая, что каникулы получились крейзи.</p>
+            <img class="diary-photo" data-drive-id="1hUbfH4NqwI_Rh9TYCqQ60BXWwF-nsGhF" alt="Даня прыгает на батуте" data-caption="Даня парит над батутом — смех и восторг до самого заката." loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="photo-viewer" id="photo-viewer" aria-hidden="true" role="dialog" aria-label="Просмотр фото">
+    <div class="photo-frame">
+      <button class="close-btn" data-photo-close style="position:absolute; top:10px; right:10px;">Закрыть</button>
+      <div class="photo-nav" aria-hidden="true">
+        <button class="nav-btn" type="button" data-photo-prev aria-label="Предыдущее фото">‹</button>
+        <button class="nav-btn" type="button" data-photo-next aria-label="Следующее фото">›</button>
+      </div>
+      <img src="" alt="" id="photo-viewer-img">
+      <div class="photo-indicator" id="photo-indicator"></div>
+      <p class="photo-caption" id="photo-viewer-caption"></p>
+    </div>
+  </div>
+
+  <script>
+    const memoryCards = document.querySelectorAll('[data-modal-target]');
+    const modals = Array.from(document.querySelectorAll('.modal-backdrop'));
+    const photoViewer = document.getElementById('photo-viewer');
+    const photoImg = document.getElementById('photo-viewer-img');
+    const photoCaption = document.getElementById('photo-viewer-caption');
+    const photoIndicator = document.getElementById('photo-indicator');
+    const diaryPhotos = Array.from(document.querySelectorAll('.diary-photo'));
+    let currentPhotoIndex = 0;
+    let scrollLocks = 0;
+
+    function lockScroll() {
+      scrollLocks += 1;
+      document.body.classList.add('lock-scroll');
+    }
+
+    function unlockScroll() {
+      scrollLocks = Math.max(0, scrollLocks - 1);
+      if (scrollLocks === 0) {
+        document.body.classList.remove('lock-scroll');
+      }
+    }
+
+    function openModal(target) {
+      if (!target) return;
+      target.classList.add('active');
+      target.setAttribute('aria-hidden', 'false');
+      lockScroll();
+    }
+
+    function closeModal(target) {
+      if (!target) return;
+      target.classList.remove('active');
+      target.setAttribute('aria-hidden', 'true');
+      unlockScroll();
+    }
+
+    function getActiveModal() {
+      return modals.find((modalEl) => modalEl.classList.contains('active'));
+    }
+
+    memoryCards.forEach(card => {
+      const targetId = card.getAttribute('data-modal-target');
+
+      function handleOpen() {
+        const target = document.getElementById(targetId);
+        if (target) openModal(target);
+      }
+
+      card.addEventListener('click', handleOpen);
+      card.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          handleOpen();
+        }
+      });
+    });
+
+    modals.forEach((modalEl) => {
+      modalEl.querySelectorAll('[data-close-modal]').forEach((button) => {
+        button.addEventListener('click', () => closeModal(modalEl));
+      });
+
+      modalEl.addEventListener('click', (event) => {
+        if (event.target === modalEl) {
+          closeModal(modalEl);
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        const activeModal = getActiveModal();
+        if (activeModal) {
+          closeModal(activeModal);
+          return;
+        }
+        if (photoViewer.classList.contains('active')) {
+          closePhotoViewer();
+        }
+      }
+    });
+
+    const driveSources = (id) => ([
+      `https://drive.google.com/uc?export=view&id=${id}`,
+      `https://drive.google.com/thumbnail?id=${id}&sz=w2000`,
+      `https://lh3.googleusercontent.com/d/${id}=s2000`
+    ]);
+
+    document.querySelectorAll('[data-drive-id]').forEach((img) => {
+      const sources = driveSources(img.dataset.driveId);
+      let attempt = 0;
+
+      const setNextSource = () => {
+        if (attempt < sources.length) {
+          img.src = sources[attempt];
+          attempt += 1;
+        } else {
+          img.classList.add('image-failed');
+          img.alt = `${img.alt} (не удалось загрузить)`;
+        }
+      };
+
+      img.addEventListener('error', setNextSource);
+      img.addEventListener('load', () => {
+        img.dataset.resolvedSrc = img.src;
+      });
+
+      setNextSource();
+    });
+
+    function showPhoto(index) {
+      if (!diaryPhotos.length) return;
+      currentPhotoIndex = (index + diaryPhotos.length) % diaryPhotos.length;
+      const img = diaryPhotos[currentPhotoIndex];
+      const sources = driveSources(img.dataset.driveId);
+      const resolvedSrc = img.dataset.resolvedSrc || sources[0];
+      const caption = img.dataset.caption || img.alt;
+
+      photoImg.classList.remove('zoomed');
+      photoImg.src = resolvedSrc;
+      photoImg.alt = img.alt;
+      photoCaption.textContent = caption;
+      photoIndicator.textContent = `${currentPhotoIndex + 1} / ${diaryPhotos.length}`;
+      photoViewer.classList.add('active');
+      photoViewer.setAttribute('aria-hidden', 'false');
+      lockScroll();
+    }
+
+    function closePhotoViewer() {
+      photoViewer.classList.remove('active');
+      photoViewer.setAttribute('aria-hidden', 'true');
+      photoImg.src = '';
+      photoIndicator.textContent = '';
+      unlockScroll();
+    }
+
+    diaryPhotos.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        showPhoto(index);
+      });
+    });
+
+    photoViewer.addEventListener('click', (event) => {
+      if (event.target === photoViewer) {
+        closePhotoViewer();
+      }
+    });
+
+    document.querySelectorAll('[data-photo-close]').forEach((btn) => {
+      btn.addEventListener('click', closePhotoViewer);
+    });
+
+    document.querySelectorAll('[data-photo-prev]').forEach((btn) => btn.addEventListener('click', () => showPhoto(currentPhotoIndex - 1)));
+    document.querySelectorAll('[data-photo-next]').forEach((btn) => btn.addEventListener('click', () => showPhoto(currentPhotoIndex + 1)));
+
+    photoImg.addEventListener('click', () => {
+      photoImg.classList.toggle('zoomed');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (photoViewer.classList.contains('active')) {
+        if (event.key === 'ArrowLeft') {
+          showPhoto(currentPhotoIndex - 1);
+        }
+        if (event.key === 'ArrowRight') {
+          showPhoto(currentPhotoIndex + 1);
+        }
+        if (event.key === ' ') {
+          event.preventDefault();
+          photoImg.classList.toggle('zoomed');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
