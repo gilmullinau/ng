@@ -571,10 +571,12 @@
       object-fit: contain;
       cursor: zoom-in;
       transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+      --rotate: 0deg;
+      transform: rotate(var(--rotate));
     }
 
     .diary-photo:hover {
-      transform: translateY(-4px) rotate(-0.3deg);
+      transform: translateY(-4px) rotate(calc(var(--rotate) - 0.3deg));
       box-shadow: 0 16px 34px rgba(0, 0, 0, 0.26), 0 0 0 8px rgba(255, 255, 255, 0.9);
     }
 
@@ -621,6 +623,8 @@
       object-fit: contain;
       transition: transform 220ms ease;
       cursor: zoom-in;
+      --rotate: 0deg;
+      transform: rotate(var(--rotate));
     }
 
     .photo-caption {
@@ -673,7 +677,7 @@
     }
 
     .photo-frame img.zoomed {
-      transform: scale(1.22);
+      transform: rotate(var(--rotate)) scale(1.22);
       cursor: zoom-out;
     }
 
@@ -911,7 +915,7 @@
           <div class="diary-entry">
             <span class="entry-pin">3</span>
             <p class="entry-text">Апрель был про движение: <strong>мы катались на квадроцикле</strong> 🏍️ — ветер в лицо, скорость и радость от свободы без курток.</p>
-            <img class="diary-photo" data-drive-id="1VC-4WBY7FhF-bFzDwd11WoGO2XNp4YmP" alt="Катание на квадроцикле" data-caption="Квадроцикл несётся по весенней дороге — скорость, смех и лёгкость." loading="lazy">
+            <img class="diary-photo" data-drive-id="1VC-4WBY7FhF-bFzDwd11WoGO2XNp4YmP" data-rotate="90" alt="Катание на квадроцикле" data-caption="Квадроцикл несётся по весенней дороге — скорость, смех и лёгкость." loading="lazy">
           </div>
 
           <div class="diary-entry">
@@ -941,7 +945,7 @@
           <div class="diary-entry">
             <span class="entry-pin">8</span>
             <p class="entry-text">Семейные поездки по магазинам и просто прогулки: <strong>мы с Даней едем в машине</strong> 🚗, обсуждаем планы и смеёмся над мелочами.</p>
-            <img class="diary-photo" data-drive-id="1BVDie87J7RP-373doAC9mS42ngRgWLrt" alt="Селфи в машине с Даней" data-caption="Дорога, разговоры и хорошее настроение — апрель в пути." loading="lazy">
+            <img class="diary-photo" data-drive-id="1BVDie87J7RP-373doAC9mS42ngRgWLrt" data-rotate="90" alt="Селфи в машине с Даней" data-caption="Дорога, разговоры и хорошее настроение — апрель в пути." loading="lazy">
           </div>
 
           <div class="diary-entry">
@@ -1156,6 +1160,8 @@
     document.querySelectorAll('[data-drive-id]').forEach((img) => {
       const sources = driveSources(img.dataset.driveId);
       let attempt = 0;
+      const rotation = img.dataset.rotate || '0';
+      img.style.setProperty('--rotate', `${rotation}deg`);
 
       const setNextSource = () => {
         if (attempt < sources.length) {
@@ -1182,12 +1188,14 @@
       const sources = driveSources(img.dataset.driveId);
       const resolvedSrc = img.dataset.resolvedSrc || sources[0];
       const caption = img.dataset.caption || img.alt;
+      const rotation = img.dataset.rotate || '0';
 
       photoImg.classList.remove('zoomed');
       photoImg.src = resolvedSrc;
       photoImg.alt = img.alt;
       photoCaption.textContent = caption;
       photoIndicator.textContent = `${currentPhotoIndex + 1} / ${diaryPhotos.length}`;
+      photoImg.style.setProperty('--rotate', `${rotation}deg`);
       photoViewer.classList.add('active');
       photoViewer.setAttribute('aria-hidden', 'false');
       lockScroll();
