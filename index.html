@@ -258,8 +258,8 @@
     .month-road .month-6 { --x: 46%; --y: 260px; }
     .month-road .month-7 { --x: 54%; --y: 430px; }
     .month-road .month-8 { --x: 80%; --y: 430px; }
-    .month-road .month-9 { --x: 20%; --y: 570px; }
-    .month-road .month-10 { --x: 48%; --y: 570px; }
+    .month-road .month-9 { --x: 30%; --y: 570px; }
+    .month-road .month-10 { --x: 60%; --y: 570px; }
     .month-road .month-11 { --x: 82%; --y: 710px; }
     .month-road .month-12 { --x: 56%; --y: 710px; }
 
@@ -788,7 +788,10 @@
           <span class="month-label" aria-hidden="true">Август</span>
         </div>
         <div class="month-stop month-9">
-          <button class="month-cta" disabled aria-label="Раздел про сентябрь пока в разработке">Как мы провели сентябрь</button>
+          <button class="month-cta" data-modal-target="september-collage-modal" aria-label="Открыть сентябрьский коллаж">
+            <span class="month-sticker" aria-hidden="true">🍁</span>
+            <span>Сентябрь: школа и грибы</span>
+          </button>
           <span class="month-label" aria-hidden="true">Сентябрь</span>
         </div>
         <div class="month-stop month-10">
@@ -1344,6 +1347,80 @@
       </div>
     </div>
   </div>
+
+  <div class="modal-backdrop" id="september-collage-modal" aria-hidden="true" role="dialog" aria-labelledby="september-collage-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="september-collage-title">Коллаж: сентябрь — школа и грибы</h3>
+        <button class="close-btn" data-close-modal>Закрыть</button>
+      </div>
+      <div class="diary-page" role="document">
+        <p class="diary-heading">Сентябрь: школа, дела и первые осенние трофеи</p>
+        <div class="diary-entries">
+          <div class="diary-entry">
+            <span class="entry-pin">1</span>
+            <p class="entry-text">Сентябрь начался со <strong>школы для Дани</strong> 🎒 — собранный, серьёзный, с чувством важности момента.</p>
+            <img class="diary-photo" data-drive-id="1jMEcjqq0KoDOhUCslqyJkBpbm6a-X3aa" alt="Даня идёт в школу" data-caption="Даня идёт в школу: новый учебный год и новые открытия." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">2</span>
+            <p class="entry-text"><strong>Макс тоже отправился в школу</strong> — немного волнения и радости на привычной дорожке знаний.</p>
+            <img class="diary-photo" data-drive-id="1u5i34B8HyrNhD1bTuaJOiGwI_KJRwGXI" alt="Макс идёт в школу" data-caption="Макс в школу: шаги к новым урокам и друзьям." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">3</span>
+            <p class="entry-text"><strong>Макс с одноклассниками</strong> — начало учебных будней, разговоры и планы на целый год.</p>
+            <img class="diary-photo" data-drive-id="1g70ldp8ue4P1flWzStUA4G4CosUvw1uR" alt="Макс с одноклассниками" data-caption="Одноклассники рядом: вместе веселее встречать учебный год." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">4</span>
+            <p class="entry-text">Осень пришла с лесными подарками: <strong>папа нашёл огромный гриб</strong> 🍄 — тихая радость из сентябрьского леса.</p>
+            <img class="diary-photo" data-drive-id="1ZIi2RtHeEMRcjaMKlJW-GL4cTie9p8rL" alt="Папа нашёл огромный гриб" data-caption="Первый трофей: папа с большим грибом и довольной улыбкой." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">5</span>
+            <p class="entry-text"><strong>Грибные выходы</strong> стали частью дней: лес, корзины и спокойствие осени.</p>
+            <img class="diary-photo" data-drive-id="1A0NQLg85oN7N10gVS56LK-ekakAQYOKf" alt="Папа собирает грибы" data-caption="Грибной поход: тишина леса и корзина в руках." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">6</span>
+            <p class="entry-text"><strong>Корзинка грибов</strong> — результат терпения и хорошего дня. Осень умеет быть щедрой.</p>
+            <img class="diary-photo" data-drive-id="1fXPhj_YbS419eM9fbm3tF8gHiB2xHukN" alt="Корзинка с грибами" data-caption="Полная корзина грибов: запах леса и вкус осени." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">7</span>
+            <p class="entry-text"><strong>Крытый бассейн</strong> 🏊 — с похолоданием вода осталась с нами, просто переехала под крышу.</p>
+            <img class="diary-photo" data-drive-id="1fn7bkYwAf0hfkj6cOsmjagftTFjmBaRT" alt="Крытый бассейн осенью" data-caption="Осенний бассейн: тепло воды и новые тренировки." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">8</span>
+            <p class="entry-text"><strong>Максим помогал чистить урожай</strong> 🥔 — домашние заботы, которые учат ответственности.</p>
+            <img class="diary-photo" data-drive-id="1iIFruK3y1MEMHeZDKaimoL5QpDqoFJIC" alt="Максим чистит урожай" data-caption="Урожай в руках: работа и семейные традиции." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">9</span>
+            <p class="entry-text"><strong>Мама в работе</strong> 💼 — сентябрь требовал собранности, внимания и энергии.</p>
+            <img class="diary-photo" data-drive-id="1EILn_LHacwY2QGvgZn84nmip0bC6MhCi" alt="Мама работает за ноутбуком" data-caption="Рабочий ритм: фокус и новые задачи." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">10</span>
+            <p class="entry-text"><strong>Даня помогает начальнику</strong> 🗂️ — новый опыт и чувство причастности к важным делам.</p>
+            <img class="diary-photo" data-drive-id="1k7-yeDSuAyY7Z5OLZFI6qYvJnqQgqBOF" alt="Даня помогает начальнику" data-caption="Даня в деле: первый взгляд на взрослую работу." loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="modal-backdrop" id="march-collage-modal" aria-hidden="true" role="dialog" aria-labelledby="march-collage-title">
     <div class="modal-content">
