@@ -260,7 +260,7 @@
     .month-road .month-8 { --x: 80%; --y: 430px; }
     .month-road .month-9 { --x: 30%; --y: 570px; }
     .month-road .month-10 { --x: 55%; --y: 600px; }
-    .month-road .month-11 { --x: 82%; --y: 710px; }
+    .month-road .month-11 { --x: 88%; --y: 710px; }
     .month-road .month-12 { --x: 56%; --y: 710px; }
 
     .card {
@@ -802,7 +802,10 @@
           <span class="month-label" aria-hidden="true">Октябрь</span>
         </div>
         <div class="month-stop month-11">
-          <button class="month-cta" disabled aria-label="Раздел про ноябрь пока в разработке">Как мы провели ноябрь</button>
+          <button class="month-cta" data-modal-target="november-collage-modal" aria-label="Открыть ноябрьский коллаж">
+            <span class="month-sticker" aria-hidden="true">🍃</span>
+            <span>Ноябрь</span>
+          </button>
           <span class="month-label" aria-hidden="true">Ноябрь</span>
         </div>
         <div class="month-stop month-12">
@@ -1586,6 +1589,62 @@
       </div>
     </div>
   </div>
+
+  <div class="modal-backdrop" id="november-collage-modal" aria-hidden="true" role="dialog" aria-labelledby="november-collage-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="november-collage-title">Коллаж: ноябрь — тихий и тёплый</h3>
+        <button class="close-btn" data-close-modal>Закрыть</button>
+      </div>
+      <div class="diary-page" role="document">
+        <p class="diary-heading">Ноябрь: тихий, семейный, с маленькими победами</p>
+        <div class="diary-entries">
+          <div class="diary-entry">
+            <span class="entry-pin">1</span>
+            <p class="entry-text">У мамы Оли — <strong>корпоративные достижения</strong> 🎖️: результат труда и признание команды.</p>
+            <img class="diary-photo" data-drive-id="1q84XJqUEEvobsBdOTJphrMIkdGZ_wyvC" alt="Корпоративное достижение мамы Оли" data-caption="Мамины достижения: радость за проделанную работу." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">2</span>
+            <p class="entry-text">Ещё один кадр с работы — <strong>новый результат и поддержка коллег</strong>.</p>
+            <img class="diary-photo" data-drive-id="1KnjC6V3YX4MuXwH8TLmfrkI-ah2ZNTCN" alt="Ещё один снимок корпоративных достижений" data-caption="Командная поддержка и ещё одна ступень вперёд." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">3</span>
+            <p class="entry-text">В гости приехал <strong>Эльдар</strong> — старый друг папы. Вместе поплавали в бассейне и вспомнили давние истории.</p>
+            <img class="diary-photo" data-drive-id="1yNQYDLsMT-DJPWVRDC2V88D4z7DOYO_x" alt="Эльдар и папа в бассейне" data-caption="Эльдар в гостях: бассейн, разговоры и дружба." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">4</span>
+            <p class="entry-text"><strong>Хэллоуинские бургеры</strong> 🍔🎃 — немного праздника даже в сером ноябре.</p>
+            <img class="diary-photo" data-drive-id="1EAeMLeQfcDzQSc7oL2UlUEfhq9fl-CqC" alt="Хэллоуинские бургеры" data-caption="Бургеры в стиле Хэллоуина: ярко и вкусно." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">5</span>
+            <p class="entry-text"><strong>Даня готовит оладьи</strong> 🥞 — домашний шедевр и ещё один кулинарный эксперимент.</p>
+            <img class="diary-photo" data-drive-id="163CligoTUihHkRl8ull2anSwMhGptIq_" alt="Даня держит тарелку оладий" data-caption="Данины оладьи: тепло кухни и отличный вкус." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">6</span>
+            <p class="entry-text"><strong>Собачья лежанка Дани</strong> 🐾 — новое уютное место, где можно просто расслабиться.</p>
+            <img class="diary-photo" data-drive-id="1ZTKMzTtref41JOxUnml55klCw0fO10OB" alt="Даня лежит на собачьей лежанке" data-caption="Уютная лежанка: личный уголок Дани." loading="lazy">
+          </div>
+
+          <div class="diary-entry">
+            <span class="entry-pin">7</span>
+            <p class="entry-text"><strong>Макс перерос маму</strong> 📏 — маленький, но важный момент: дети растут быстрее, чем кажется.</p>
+            <img class="diary-photo" data-drive-id="1H1B7RsZB03YGQ0oOVWcD9QEH7NZ5hVhV" alt="Макс вырос выше мамы" data-caption="Макс и мама: новый рост и повод для улыбки." loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
 
